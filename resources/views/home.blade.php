@@ -62,6 +62,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <li><a class="dropdown-item" href="#">Perfil</a></li>
+                          <form action="{{ route('authlogout.logout') }}" method="post">
+                            @csrf
+                            <button class="dropdown-item" type="submit">Sair</button>
+                          </form>
                         </ul>
                       </li>  
                     @endif

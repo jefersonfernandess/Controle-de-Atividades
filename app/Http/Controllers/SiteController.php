@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
@@ -15,7 +14,8 @@ class SiteController extends Controller
             return view('home', compact('user'));
         }
 
-        return view('home');
+        $user = false;
+        return view('home', compact('user'));
 
 
     }
