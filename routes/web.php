@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(SiteController::class)->group(function() {
+    Route::get('/', 'index')->name('site.index');
+}); 
+
+
+Route::controller(AuthController::class)->group(function() {
+
+    Route::get('/login/', 'loginIndex')->name('authlogin.index');
+    Route::post('/login/entrando/', 'loginStore')->name('authlogin.store');
+    Route::post('/login/logout/', 'logout')->name('authlogout.logout');
+
+    Route::get('/registrar-se/', 'registerIndex')->name('authregister.index');
+    Route::post('/registar-se/registrando', 'registerStore')->name('authregister.store');
 });
