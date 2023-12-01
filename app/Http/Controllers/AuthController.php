@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,11 +13,13 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    public function loginIndex() {
+    public function loginIndex()
+    {
         return view('auth.login');
     }
 
-    public function loginStore(LoginFormRequest $request) {
+    public function loginStore(LoginFormRequest $request)
+    {
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
@@ -32,7 +35,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
-    } 
+    }
 
     public function registerIndex()
     {
@@ -41,12 +44,19 @@ class AuthController extends Controller
 
     public function registerStore(RegisterFormRequest $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect('site.index');
+        if ($user) {
+            UserRole::create([
+                'user_id' => $user->id,
+                'role_id' => 1
+            ]);
+        }
+
+        return redirect()->route('site.index');
     }
 }

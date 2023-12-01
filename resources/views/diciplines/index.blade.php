@@ -1,7 +1,20 @@
 @extends('layouts.master')
 
-@section('titulo', 'Home - Page')
+@section('titulo', 'Diciplinas - Todas')
+<style>
+    .card-diciplines {
+        width: 25rem;
+        height: 20rem;
+        border: 1px solid black;
+        border-radius: 1rem;
+    }
 
+    .card__content__img {
+        width: 24rem;
+        height: 10rem;
+    }
+    
+</style>
 @section('content')
     <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
         <!-- Container wrapper -->
@@ -19,28 +32,11 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Portal</a>
+                        <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Atividades</a>
+                        <a class="nav-link active" href="#">Criar diciplina</a>
                     </li>
-                    @if ($user)
-                        @if ($userRole > 2)
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Alunos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Professores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Teste</a>
-                            </li>
-                        @endif
-                    @endif
                     <li class="nav-item">
                         <a class="nav-link disabled"></a>
                     </li>
@@ -78,6 +74,21 @@
         <!-- Container wrapper -->
     </nav>
     <div class="container">
-        <h1>Home</h1>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width:27rem;">
+                    <img class="card-img-top" src="{{ asset('img/matematicateste.jpg') }}" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">Nome diciplina</h4>
+                        <p class="card-text">Professor diciplina</p>
+                        <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                            <a href="#" class="btn btn-success">Vizualizar</a>
+                            <a href="#" class="btn btn-warning">Editar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

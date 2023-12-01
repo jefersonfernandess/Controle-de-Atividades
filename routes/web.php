@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DiciplineController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SiteController;
@@ -19,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(SiteController::class)->group(function() {
     Route::get('/', 'index')->name('site.index');
-}); 
 
+    Route::controller(DiciplineController::class)->group(function() {
+        Route::get('/diciplinas/', 'index')->name('diciplines.index');
+    })->middleware('accessLevel');
+}); 
 
 Route::controller(AuthController::class)->group(function() {
 
