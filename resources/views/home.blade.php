@@ -30,7 +30,7 @@
                                 <a class="nav-link active" href="#">Alunos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Professores</a>
+                                <a class="nav-link active" href="{{ route('teacher.index') }}">Professores</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
