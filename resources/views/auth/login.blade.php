@@ -51,7 +51,7 @@
             @csrf
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <h2>Login Professor</h2>
+                    <h2>Login</h2>
                 </div>
             </div>
             <div class="row">

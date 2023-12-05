@@ -25,7 +25,7 @@
                         <a class="nav-link active" href="#">Atividades</a>
                     </li>
                     @if ($user)
-                        @if ($userRole > 2)
+                        @if ($userRole->role_id > 2)
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Alunos</a>
                             </li>

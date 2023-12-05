@@ -59,7 +59,7 @@
 </style>
 @section('content')
     <div class="container content">
-        <form id="form" class="form-register" action="" method="post">
+        <form id="form" class="form-register" action="{{ route('teacher.store') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col d-flex justify-content-center">
@@ -92,7 +92,7 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-dark" type="submit">Registrar</button>
+                    <button class="btn btn-dark" type="submit">Registrar professor</button>
                 </div>
             </div>
             @if (session('fail'))

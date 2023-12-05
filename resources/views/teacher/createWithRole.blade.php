@@ -54,12 +54,12 @@
     }
 
     .errorMessage {
-        color: red;
+        color: red; 
     }
 </style>
 @section('content')
     <div class="container content">
-        <form id="form" class="form-register" action="{{ route('teacher.storeWithRole') }}" method="post">
+        <form id="form" class="form-register" action="{{ route('teacher.updateRole') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col d-flex justify-content-center">
@@ -68,13 +68,13 @@
             </div>
             <div class="row">
                 <div class="col d-flex flex-column justify-content-center">
-                    <select name="teacher" id="teacher" class="js-user-option">
-                        <option selected></option>
+                    <select name="userId" id="teacher" class="js-user-option">
+                        <option disabled selected></option>
                         @foreach ($users as $user)
-                            <option value="">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
-                    @error('name')
+                    @error('update')
                         <span>{{ $message }}</span>
                     @enderror
                 </div>

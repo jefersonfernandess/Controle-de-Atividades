@@ -14,7 +14,7 @@
         align-items: center;
         justify-content: center;
         margin: 10 auto;
-        height: 80%;
+        height: 95%;
     }
 
     .form-register {
@@ -51,7 +51,7 @@
             @csrf
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <h2>Registro Professor</h2>
+                    <h2>Registro</h2>
                 </div>
             </div>
             <div class="row">

@@ -24,9 +24,12 @@ Route::controller(SiteController::class)->group(function() {
         Route::get('/professor/', 'index')->name('teacher.index');
         Route::get('/professor/adicionar/', 'createNoRole')->name('teacher.createNoRole');
         Route::get('/professor/adicionar-registrado/', 'createWithRole')->name('teacher.createWithRole');
-        Route::post('/professor/adicionando/', 'storeWithRole')->name('teacher.storeWithRole');
+        Route::post('/professor/criando/', 'storeTeacher')->name('teacher.store');
+        Route::post('/professor/atualizando/', 'updateRole')->name('teacher.updateRole');
+        Route::put('/professor/atualizando/{professor}', 'updateTeacher')->name('teacher.update');
+        Route::delete('/professor/apagando/{professor}', 'destroyTeacher')->name('teacher.destroy');
     })->middleware('accessLevel');   
-
+    
     Route::controller(DiciplineController::class)->group(function() {
         Route::get('/diciplinas/', 'index')->name('diciplines.index');
     })->middleware('accessLevel');

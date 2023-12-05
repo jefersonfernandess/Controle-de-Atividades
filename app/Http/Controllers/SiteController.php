@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,9 +13,7 @@ class SiteController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            foreach ($user->UserRole as $userRole) {
-                $userRole = $userRole->role_id;
-            }
+            $userRole = $user->UserRole;
             return view('home', compact('user', 'userRole'));
         }
 
