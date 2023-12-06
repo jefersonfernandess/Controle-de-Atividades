@@ -34,42 +34,46 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Diciplina</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>Diciplina</td>
-                        <td class="d-flex justify-content-center align-center">
+    <div class="container mt-4">
+        <div class="row">
+            @foreach ($users as $user)
+                <div class="col-3 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa fa-user" aria-hidden="true"></i>
+                                {{ $user->name }}</h5>
+                            <p class="card-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                {{ $user->email }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fa fa-book" aria-hidden="true"></i>
+                                Diciplina</li>
+                            <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                Atividades</li>
+                            <li class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i>
+                                Turma</li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center align-center gap-3">
                             <!--Editar-->
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#updateModal-{{ $user->id }}">
+                                data-bs-target="#updateModal-{{ $user->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 Editar
                             </button>
                             @include('teacher.modal.updateTeacher')
                             <!--Fim Editar-->
-                            <form action="{{ route('teacher.destroy', $user->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Apagar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                            <!--Apagar-->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                Apagar
+                            </button>
+                            @include('teacher.modal.deleteTeacher')
+                            <!--Fim Apagar-->
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
     </div>
     @include('teacher.modal.createTeacher')
 @endsection

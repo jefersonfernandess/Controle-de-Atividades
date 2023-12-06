@@ -27,7 +27,7 @@
                     @if ($user)
                         @if ($userRole->role_id > 2)
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Alunos</a>
+                                <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('teacher.index') }}">Professores</a>

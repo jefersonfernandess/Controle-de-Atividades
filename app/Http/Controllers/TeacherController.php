@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function index() //Redirect view INDEX
     {
         if (Auth::check()) {
 
@@ -25,18 +25,19 @@ class TeacherController extends Controller
         return view('teacher.index', compact('users'));
     }
 
-    public function createWithRole() //Redirect to view CREATE TEACHER WITH ROLE
+    public function createWithRole() //Redirect view CREATE TEACHER WITH ROLE
     {
-        $users = User::get();
+        $userRole = UserRole::where('role_id', 1)->get()->pluck('user_id');
+        $users = User::whereIn('id', $userRole)->get();
         return view('teacher.createWithRole', compact('users'));
     }
 
-    public function createNoRole() //Redirect to view CREATE TEACHER NO ROLE
+    public function createNoRole() //Redirect view CREATE TEACHER NO ROLE
     {
         return view('teacher.createNoRole');
     }
 
-    public function updateRole(Request $request)
+    public function updateRole(Request $request) //Upadate in ROLE
     {
         $validate = $request->validate([
             'userId' => 'required'
@@ -55,7 +56,7 @@ class TeacherController extends Controller
         return redirect()->route('site.index');
     }
 
-    public function storeTeacher(RegisterTeacherFormRequest $request)
+    public function storeTeacher(RegisterTeacherFormRequest $request) //CREATE new teacher account
     {
         if ($request) {
             $user = User::create([
@@ -75,7 +76,8 @@ class TeacherController extends Controller
         }
     }
 
-    public function updateTeacher(Request $request, $id) {
+    public function updateTeacher(Request $request, $id)  //UPDATE data teacher 
+    {
         $user = User::find($id);
         if(!isset($user)) {
             return redirect()->route('teacher.index')->with('erros', 'Não foi possível atualizar.');
@@ -88,7 +90,8 @@ class TeacherController extends Controller
         return redirect()->route('teacher.index')->with('success', 'Professor atualizado com sucesso!');
     }
 
-    public function destroyTeacher($id) {
+    public function unlinkTeacher($id) //UNLINK teacher from role teacher
+    { 
         $user = User::find($id);
         if(!isset($user)) {
             return redirect()->route('teacher.index')->with('erros', 'Não foi possível apagar essa conta!');
@@ -98,8 +101,19 @@ class TeacherController extends Controller
         $teacherRole = UserRole::where('user_id', $userId)->first();
         $teacherRole->update(['role_id' => 1]);
 
-        return redirect()->route('site.index');
         return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');
 
+    }
+
+    public function destroyTeacher($id) //DELETE teacher from role teacher
+    {
+        $user = User::find($id);
+        if(!isset($user)) {
+            return redirect()->route('teacher.index')->with('erros', 'Não foi possível apagar essa conta!');
+        }
+
+        $user->delete();
+
+        return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');   
     }
 }

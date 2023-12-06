@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiciplineController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,20 @@ Route::controller(SiteController::class)->group(function() {
         Route::post('/professor/criando/', 'storeTeacher')->name('teacher.store');
         Route::post('/professor/atualizando/', 'updateRole')->name('teacher.updateRole');
         Route::put('/professor/atualizando/{professor}', 'updateTeacher')->name('teacher.update');
+        Route::delete('/professor/desvinculando/{professor}', 'unlinkTeacher')->name('teacher.unlink');
         Route::delete('/professor/apagando/{professor}', 'destroyTeacher')->name('teacher.destroy');
-    })->middleware('accessLevel');   
+    })->middleware('accessLevel');
+    
+    Route::controller(StudentController::class)->group(function() {
+        Route::get('/aluno/', 'index')->name('student.index');
+        Route::get('/aluno/adicionar/', 'createNoRole')->name('student.createNoRole');
+        Route::get('/aluno/adicionar-registrado/', 'createWithRole')->name('student.createWithRole');
+        Route::post('/aluno/criando/', 'storeStudent')->name('student.store');
+        Route::post('/aluno/atualizando/', 'updateRole')->name('student.updateRole');
+        Route::put('/aluno/atualizando/{aluno}', 'updateStudent')->name('student.update');
+        Route::delete('/alunos/desvinculando/{aluno}/', 'unlinkStudent')->name('student.unlink');
+        Route::delete('/alunos/apagando/{aluno}/','destroyStudent')->name('student.destroy');
+    })->middleware('accessLevel');
     
     Route::controller(DiciplineController::class)->group(function() {
         Route::get('/diciplinas/', 'index')->name('diciplines.index');
