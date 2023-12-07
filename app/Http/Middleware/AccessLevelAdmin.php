@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AccessLevel
+class AccessLevelAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,9 @@ class AccessLevel
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        foreach ($user->UserRole as $userRole) {
-            $userRole = $userRole->role_id;
-        }
-        if ($userRole <= 2) {
+        $userRole = $user->UserRole->role_id;
+        
+        if ($userRole <= 3) {
             return redirect()->route('site.index');
         }
         

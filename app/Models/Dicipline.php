@@ -11,5 +11,5 @@ class Dicipline extends Model
 
     protected $table = 'diciplines';
 
-    protected $fillable = 'name';
+    protected $fillable = ['name'];
 }

@@ -2,8 +2,20 @@
 
 @section('titulo', 'Diciplinas - Todas')
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+
+    /*
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
+        */
+
+    .border-none {
+        border: none !important;
+        background: none;
+    }
+
     .card-diciplines {
-        width: 25rem;
+        width: inherit;
         height: 20rem;
         border: 1px solid black;
         border-radius: 1rem;
@@ -13,82 +25,100 @@
         width: 24rem;
         height: 10rem;
     }
-    
+
+    body {
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 10 auto;
+        height: 90%;
+        background-color: ;
+
+    }
+
+    .form-register {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .form-register label {
+        font-size: 0.8rem;
+    }
+
+    .row {
+        margin-bottom: 1rem;
+    }
+
+    .form-register h2 {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .form-register input {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+
+    .form-register button {
+        width: 100%
+    }
+
+    .errorMessage {
+        color: red;
+    }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Toggle button -->
-            <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarCenteredExample"
-                aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
-                <!-- Left links -->
-                <ul class="navbar-nav mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('diciplines.index') }}">Diciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="nav-link active border-none" data-bs-toggle="modal"
+                            data-bs-target="#createDiciplines">
+                            Nova Diciplina
+                        </button>
+                        @include('diciplines.modal.createDiciplines')
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Criar diciplina</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled"></a>
-                    </li>
-                    @if (!$user)
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('authlogin.index') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('authregister.index') }}">Registro</a>
-                        </li>
-                    @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Olá {{ $user->name }}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                <form action="{{ route('authlogout.logout') }}" method="post">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit">Sair</button>
-                                </form>
-                            </ul>
-                        </li>
-                    @endif
-
                 </ul>
-                <!-- Left links -->
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                </form>
             </div>
-            <!-- Collapsible wrapper -->
         </div>
-        <!-- Container wrapper -->
     </nav>
     <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="card" style="width:27rem;">
-                    <img class="card-img-top" src="{{ asset('img/matematicateste.jpg') }}" alt="Card image">
-                    <div class="card-body">
-                        <h4 class="card-title">Nome diciplina</h4>
-                        <p class="card-text">Professor diciplina</p>
-                        <div class="opcoes d-flex justify-content-left aling-center gap-1">
-                            <a href="#" class="btn btn-success">Vizualizar</a>
-                            <a href="#" class="btn btn-warning">Editar</a>
-                            <a href="#" class="btn btn-danger">Excluir</a>
+        <div class="row mt-2">
+            @foreach ($diciplines as $dicipline)
+                <div class="col-4">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('img/matematicateste.jpg') }}" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ $dicipline->name }}</h4>
+                            <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                                <a href="#" class="btn btn-success">Vizualizar</a>
+                                <a href="#" class="btn btn-warning">Editar</a>
+                                <a href="#" class="btn btn-danger">Excluir</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
