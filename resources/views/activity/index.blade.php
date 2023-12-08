@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titulo', 'Diciplinas - Todas')
+@section('titulo', 'Atividades - Todas')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
 
@@ -83,15 +83,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('diciplines.index') }}">Diciplinas</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('activity.index') }}">Atividades</a>
                     </li>
                     <li class="nav-item">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="nav-link active border-none" data-bs-toggle="modal"
-                            data-bs-target="#createDiciplines">
-                            Nova Diciplina
-                        </button>
-                        @include('diciplines.modal.createDiciplines')
+                        <a class="nav-link active" aria-current="page" href="{{ route('activity.create') }}">Nova atividade</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -103,23 +98,22 @@
     </nav>
     <div class="container">
         <div class="row mt-2">
-            @foreach ($diciplines as $dicipline)
-                <div class="col-4">
-                    <div class="card">
-                        <h2 class="text-center mt-2">{{ $dicipline->name }}</h2>
-                        <div class="card-body">
-                            <h4 class="card-title">Atividade nome</h4>
-                            <p class="mb-1">Descrição Lorem ipsum dolor sit amet consecsi</p>
-                            <p>Professor responsavel</p>
-                            <div class="opcoes d-flex justify-content-left aling-center gap-1">
-                                <a href="#" class="btn btn-success">Vizualizar</a>
-                                <a href="#" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Excluir</a>
-                            </div>
+            <div class="col-4">
+                <div class="card">
+                    <h2 class="text-center mt-2"></h2>
+                    <div class="card-body">
+                        <h4 class="card-title">Atividade nome</h4>
+                        <p class="mb-1">Descrição Lorem ipsum dolor sit amet consecsi</p>
+                        <p>Professor responsavel</p>
+                        <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                            <a href="#" class="btn btn-success">Vizualizar</a>
+                            <a href="#" class="btn btn-warning">Editar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
+    
 @endsection

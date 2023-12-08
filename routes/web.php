@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiciplineController;
 use App\Http\Controllers\SiteController;
@@ -52,14 +53,20 @@ Route::controller(SiteController::class)->group(function () {
         Route::get('/diciplinas/', 'index')->name('diciplines.index');
         Route::post('/diciplinas/criando', 'store')->name('diciplines.store');
     });
+    
+    Route::middleware(['auth', 'accessLevelTeacher'])->group(function () {
+        Route::controller(ActivityController::class)->group(function () {
+            Route::get('/atividades/', 'index')->name('activity.index');
+            Route::get('/atividades/nova-atividade/', 'create')->name('activity.create');
+            Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
+        });
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {
-
     Route::get('/login/', 'loginIndex')->name('authlogin.index');
     Route::post('/login/entrando/', 'loginStore')->name('authlogin.store');
-    Route::post('/login/logout/', 'logout')->name('authlogout.logout');
-
+    Route::post('/login/    logout/', 'logout')->name('authlogout.logout');
     Route::get('/registrar-se/', 'registerIndex')->name('authregister.index');
     Route::post('/registar-se/registrando', 'registerStore')->name('authregister.store');
 });

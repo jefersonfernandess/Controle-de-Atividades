@@ -7,36 +7,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-    <div class="container content">
-        <form id="form" class="form-register" action="{{ route('diciplines.store') }}" method="post">
-            @csrf
-            <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <h2>Nova diciplina</h2>
+                <div class="container content">
+                    <form id="form" class="form-register" action="{{ route('diciplines.store') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col d-flex justify-content-center">
+                                <h2>Nova diciplina</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex flex-column justify-content-center">
+                                <input type="text" name="name" id="name" placeholder="Nome da diciplina"
+                                    value="{{ old('name') }}">
+                                @error('name')
+                                    <span>{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex flex-column justify-content-center">
+                                    <input class="form-control form-control-sm fileinput" id="formFileSm" type="file">
+                                @error('img')
+                                    <span>{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        @if (session('fail'))
+                            <div class="row">
+                                <div class="col d-flex justify-content-center ">
+                                    <p class="errorMessage">{{ session('fail') }}</p>
+                                </div>
+                            </div>
+                        @endif
+                    </form>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex flex-column justify-content-center">
-                    <input type="text" name="name" id="name" placeholder="Nome da diciplina" value="{{ old('name') }}">
-                    @error('name')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <button class="btn btn-dark" type="submit">Criar nova diciplina</button>
-                </div>
-            </div>
-            @if (session('fail'))
-                <div class="row">
-                    <div class="col d-flex justify-content-center ">
-                        <p class="errorMessage">{{ session('fail') }}</p>
-                    </div>
-                </div>
-            @endif  
-        </form>
-    </div>  
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>

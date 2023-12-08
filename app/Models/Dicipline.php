@@ -12,4 +12,8 @@ class Dicipline extends Model
     protected $table = 'diciplines';
 
     protected $fillable = ['name'];
+
+    public function Activity() {
+        return $this->hasMany(Activity::class, 'dicipline_id', 'id');
+    }
 }

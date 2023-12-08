@@ -32,10 +32,10 @@
                                 <a class="nav-link active" href="">Portal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="">Atividades</a>
+                                <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
+                                <a class="nav-link active" href="">Atividades</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
@@ -45,16 +45,16 @@
                                 <a class="nav-link active" href="">Portal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="">Atividades</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('teacher.index') }}">Professores</a>
+                                <a class="nav-link active" href="{{ route('activity.index') }}">Atividades</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('teacher.index') }}">Professores</a>
                             </li>
                         @endif
                     @endif
