@@ -6,6 +6,11 @@
         border: none !important;
         background: none;
     }
+
+    .card {
+        border: 1px solid #8f8f8f !important;
+    }
+
 </style>
 @section('content')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

@@ -14,6 +14,10 @@
         background: none;
     }
 
+    .card {
+        border: 1px solid #8f8f8f !important;
+    }
+
     .card-diciplines {
         width: inherit;
         height: 20rem;
