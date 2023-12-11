@@ -7,7 +7,7 @@
     /*
             font-family: 'Montserrat', sans-serif;
             font-family: 'Roboto', sans-serif;
-    */
+        */
 
     .border-none {
         border: none !important;
@@ -101,28 +101,48 @@
             </div>
         </div>
     </nav>
-    <main class="main">
-        <div class="container">
-            <div class="row mt-2">
-                @foreach ($activities as $activity)
-                    <div class="col-4">
-                        <div class="card">
-                            <h2 class="text-center mt-2"></h2>
-                            <div class="card-body">
-                                <h4 class="card-title">{{ $activity->name }}</h4>
-                                {!! $activity->description !!}
-                                <div class="opcoes d-flex justify-content-left aling-center gap-1">
-                                    <a href="{{ route('activity.show', $activity->id) }}"
-                                        class="btn btn-success">Vizualizar</a>
-                                    <a href="{{ route('activity.edit', $activity->id) }}" class="btn btn-warning">Editar</a>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card">
+                    <h2 class="text-center mt-2"></h2>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $activity->name }}</h4>
+                        {!! $activity->description !!}
+                        @if ($activity->filepath == null)
+                            <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                                <a href="#" class="btn btn-warning">Editar</a>
+                                <a href="#" class="btn btn-danger">Excluir</a>
+                            </div>
+                        @else
+                            <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Arquivos extras
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ asset('storage/' . $activity->filepath) }}" download="{{ asset('storage/' . $activity->filepath) }}">Arquivo extra</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn btn-warning">Editar</a>
+                                <a href="#" class="btn btn-danger">Excluir</a>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+
                                 </div>
                             </div>
-                        </div>
+                        @endif
+
+
+
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
 @endsection

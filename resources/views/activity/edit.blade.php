@@ -45,8 +45,9 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <form class="form-content" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
+            <form class="form-content" action="" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="row">
                     <div class="dropdown">
                         <a class="btn dropdown-toggle" style="background-color: #f0a818;" href="#" role="button"
@@ -65,12 +66,12 @@
                     <div class="col-6">
                         <div class="d-flex flex-column mb-3 mt-1">
                             <label class="text-center" for="name"><b>Nome da atividade</b></label>
-                            <input type="text" name="name" id="name">
+                            <input type="text" name="name" id="name" value="{{ $activity->name }}">
                         </div>
                         <div class="d-flex flex-column mb-3">
                             <label class="text-center" for="dicipline"><b>Diciplina da atividade</b></label>
                             <select name="dicipline" id="dicipline" class="js-user-option">
-                                <option disabled selected></option>
+                                <option selected value="{{ $activity->dicipline_id }}"></option>
                                 @foreach ($diciplines as $dicipline)
                                     <option value="{{ $dicipline->id }}">{{ $dicipline->name }}</option>
                                 @endforeach

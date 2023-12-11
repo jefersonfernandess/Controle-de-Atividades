@@ -59,6 +59,8 @@ Route::controller(SiteController::class)->group(function () {
             Route::get('/atividades/', 'index')->name('activity.index');
             Route::get('/atividades/nova-atividade/', 'create')->name('activity.create');
             Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
+            Route::get('/atividades/ver/{atividade}', 'show')->name('activity.show');
+            Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
         });
     });
 });
