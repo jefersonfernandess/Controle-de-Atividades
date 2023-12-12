@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
 
+    //Access routes for admin level or higher
     Route::middleware(['auth', 'accessLevelAdmin'])->group(function () {
+
+        //Teacher controller routes
         Route::controller(TeacherController::class)->group(function () {
             Route::get('/professor/', 'index')->name('teacher.index');
             Route::get('/professor/adicionar/', 'createNoRole')->name('teacher.createNoRole');
@@ -36,42 +39,54 @@ Route::controller(SiteController::class)->group(function () {
             Route::delete('/professor/desvinculando/{professor}', 'unlinkTeacher')->name('teacher.unlink');
             Route::delete('/professor/apagando/{professor}', 'destroyTeacher')->name('teacher.destroy');
         });
-    });
 
-    Route::middleware(['auth', 'accessLevelTeacher'])->group(function () {
+        //Students controller routes
         Route::controller(StudentController::class)->group(function () {
             Route::get('/aluno/', 'index')->name('student.index');
+        });
+
+        //Diciplines controller routes
+        Route::controller(DiciplineController::class)->group(function () {
+            Route::get('/diciplinas/', 'index')->name('diciplines.index');
+            Route::post('/diciplinas/criando', 'store')->name('diciplines.store');
+        });
+
+        //Activity Response controller routes
+        Route::controller(ActivityController::class)->group(function () {
+            Route::get('/atividades/', 'index')->name('activity.index');
+        });
+    });
+
+    //Access routes for teacher level or higher
+    Route::middleware(['auth', 'accessLevelTeacher'])->group(function () {
+
+        //Students controller routes
+        Route::controller(StudentController::class)->group(function () {
             Route::get('/aluno/adicionar/', 'createNoRole')->name('student.createNoRole');
             Route::get('/aluno/adicionar-registrado/', 'createWithRole')->name('student.createWithRole');
             Route::post('/aluno/criando/', 'storeStudent')->name('student.store');
             Route::post('/aluno/atualizando/', 'updateRole')->name('student.updateRole');
             Route::put('/aluno/atualizando/{aluno}', 'updateStudent')->name('student.update');
             Route::delete('/alunos/desvinculando/{aluno}/', 'unlinkStudent')->name('student.unlink');
-            Route::delete('/alunos/apagando/{aluno}/', 'destroyStudent')->name('student.destroy');
         });
-    });
 
-    Route::controller(DiciplineController::class)->group(function () {
-        Route::get('/diciplinas/', 'index')->name('diciplines.index');
-        Route::post('/diciplinas/criando', 'store')->name('diciplines.store');
-    });
-
-    Route::middleware(['auth', 'accessLevelTeacher'])->group(function () {
+        //Activity controller routes
         Route::controller(ActivityController::class)->group(function () {
-            Route::get('/atividades/', 'index')->name('activity.index');
             Route::get('/atividades/{professor}/', 'activitiesTeacher')->name('activityTeacher.index');
             Route::get('/atividades/nova-atividade/', 'create')->name('activity.create');
             Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
             Route::get('/atividades/ver/{atividade}', 'show')->name('activity.show');
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
         });
-    });
 
-    Route::controller(ActivityResponseController::class)->group(function () {
-        Route::get('/reposta-atividades/', 'index')->name('responseacty.index');
+        //Activity Response controller routes
+        Route::controller(ActivityResponseController::class)->group(function () {
+            Route::get('/reposta-atividades/', 'index')->name('responseacty.index');
+        });
     });
 });
 
+//Routes for authentication
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login/', 'loginIndex')->name('authlogin.index');
     Route::post('/login/entrando/', 'loginStore')->name('authlogin.store');

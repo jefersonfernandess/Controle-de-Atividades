@@ -104,16 +104,4 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');
 
     }
-
-    public function destroyStudent($id) //DELETE teacher from role teacher
-    {
-        $user = User::find($id);
-        if(!isset($user)) {
-            return redirect()->route('student.index')->with('erros', 'Não foi possível apagar essa conta!');
-        }
-
-        $user->delete();
-
-        return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');   
-    }
 }
