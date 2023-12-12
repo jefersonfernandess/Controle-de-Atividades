@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('activities_responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('activity_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('activity_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('check');
             $table->float('note');
             $table->string('filepath');
