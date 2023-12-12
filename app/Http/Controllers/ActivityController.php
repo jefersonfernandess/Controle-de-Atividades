@@ -27,6 +27,10 @@ class ActivityController extends Controller
         return view('activity.index', compact('users', 'activities'));
     }
 
+    public function activitiesTeacher($id) {
+        return 'oi';
+    }
+
     public function create()
     {
         $diciplines = Dicipline::get();

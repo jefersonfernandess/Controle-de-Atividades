@@ -113,7 +113,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($activities as $activity)
+                    {{--  @foreach ($activities as $activity)
                         <tr>
                             <td>{{ $activity->name }}</td>
                             <td>{{ $activity->User->name }}</td>
@@ -130,7 +130,7 @@
                                 <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach  --}}
                 </tbody>
             </table>
             <div class="row mt-2">

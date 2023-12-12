@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityResponseController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiciplineController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Models\ActivityResponse;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -53,15 +55,20 @@ Route::controller(SiteController::class)->group(function () {
         Route::get('/diciplinas/', 'index')->name('diciplines.index');
         Route::post('/diciplinas/criando', 'store')->name('diciplines.store');
     });
-    
+
     Route::middleware(['auth', 'accessLevelTeacher'])->group(function () {
         Route::controller(ActivityController::class)->group(function () {
             Route::get('/atividades/', 'index')->name('activity.index');
+            Route::get('/atividades/{professor}/', 'activitiesTeacher')->name('activityTeacher.index');
             Route::get('/atividades/nova-atividade/', 'create')->name('activity.create');
             Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
             Route::get('/atividades/ver/{atividade}', 'show')->name('activity.show');
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
         });
+    });
+
+    Route::controller(ActivityResponseController::class)->group(function () {
+        Route::get('/reposta-atividades/', 'index')->name('responseacty.index');
     });
 });
 

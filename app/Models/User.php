@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function Activity() {
         return $this->hasMany(Activity::class, 'user_id', 'id');
     }
+
+    public function ActivityResponse() {
+        return $this->hasMany(ActivityResponse::class, 'user_id', 'id');
+    }
 }

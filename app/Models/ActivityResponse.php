@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Activity extends Model
+class ActivityResponse extends Model
 {
     use HasFactory;
 
-    protected $table = 'activities';
+    protected $table = 'activities_responses';
 
     protected $fillable = [
+        'activity_id',
         'user_id',
-        'dicipline_id',
-        'name',
+        'check',
+        'note',
         'filepath',
         'description'
     ];
@@ -23,11 +24,7 @@ class Activity extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function Dicipline() {
-        return $this->belongsTo(Dicipline::class, 'dicipline_id', 'id');
-    }
-
-    public function ActivityResponse() {
-        return $this->hasMany(ActivityResponse::class, 'activity_id', 'id');
+    public function Activity() {
+        return $this->belongsTo(Activity::class, 'activiy_id', 'id');
     }
 }
