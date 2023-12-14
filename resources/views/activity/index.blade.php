@@ -104,7 +104,7 @@
     <main class="main">
         <div class="container">
             <table class="table table-hover">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col-4">Nome atividade</th>
                         <th scope="col-4">Professor responsavel</th>
@@ -118,16 +118,29 @@
                             <td>{{ $activity->name }}</td>
                             <td>{{ $activity->User->name }}</td>
                             <td>{{ $activity->Dicipline->name }}</td>
-                            <td>
-                                <!-- Start modal show-->
-                                <button type="button" class="btn btn-info" style="color: black !important;" data-bs-toggle="modal"
-                                    data-bs-target="#showModal-{{ $activity->id }}"><i class="fa fa-eye" aria-hidden="true"></i>
-                                </button>
-                                @include('activity.modal.showModal')
-                                <!-- End modal show-->
-                                <a class="btn btn-warning" href=""><i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-                                <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <td class="d-flex gap-2">
+                                <div>
+                                    <!-- Start modal show-->
+                                    <button type="button" class="btn btn-info" style="color: black !important;"
+                                        data-bs-toggle="modal" data-bs-target="#showModal-{{ $activity->id }}"><i
+                                            class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    @include('activity.modal.showModal')
+                                    <!-- End modal show-->
+                                </div>
+                                <div>
+                                    <a class="btn btn-warning" href="{{ route('activity.edit', $activity->id) }}"><i
+                                            class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <form action="{{ route('activity.destroy', $activity->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

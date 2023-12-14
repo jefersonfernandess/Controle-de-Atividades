@@ -53,7 +53,7 @@ class StudentController extends Controller
                 ]);
             }
 
-            return redirect()->route('students.index')->with('success', 'Aluno criado com sucesso!');
+            return redirect()->route('student.index')->with('success', 'Aluno criado com sucesso!');
         }
     }
 
@@ -66,14 +66,14 @@ class StudentController extends Controller
         ]);
 
         if (!$validate) {
-            return redirect()->route('students.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
+            return redirect()->route('student.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
         }
 
         $userId = $request->userId;
         $teacherRole = UserRole::where('user_id', $userId)->first();
         $teacherRole->update(['role_id' => 2]);
 
-        return redirect()->route('students.index')->with('success', 'Aluno vinculado com sucesso!');
+        return redirect()->route('student.index')->with('success', 'Aluno vinculado com sucesso!');
     }
 
     public function updateStudent(Request $request, $id)  //UPDATE data teacher 
@@ -101,7 +101,7 @@ class StudentController extends Controller
         $studentRole = UserRole::where('user_id', $userId)->first();
         $studentRole->update(['role_id' => 1]);
 
-        return redirect()->route('students.index')->with('success', 'Professor excluido com sucesso!');
+        return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');
 
     }
 }

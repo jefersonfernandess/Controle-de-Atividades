@@ -51,12 +51,9 @@
                                 {{ $user->email }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="fa fa-book" aria-hidden="true"></i>
-                                Diciplina</li>
-                            <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                Atividades</li>
-                            <li class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i>
-                                Turma</li>
+                            <li class="list-group-item">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> Atividades
+                            </li>
                         </ul>
                         <div class="card-body d-flex justify-content-center align-center gap-3">
                             <!--Editar-->

@@ -70,6 +70,8 @@ Route::controller(SiteController::class)->group(function () {
             Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
             Route::get('/atividades/ver/{atividade}', 'show')->name('activity.show');
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
+            Route::put('/atividades/atualizando-atividade/{atividade}', 'update')->name('activity.update'); 
+            Route::delete('/atividades/apagando-atividade/{atividade}', 'destroy')->name('activity.destroy');
         });
         //Activity Response controller routes
         Route::controller(ActivityResponseController::class)->group(function () {

@@ -6,8 +6,10 @@ use App\Models\Activity;
 use App\Models\Dicipline;
 use App\Models\User;
 use App\Models\UserRole;
+use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
@@ -66,5 +68,51 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         $diciplines = Dicipline::get();
         return view('activity.edit', compact('activity', 'diciplines'));
+    }
+
+    public function update(Request $request, $id) {
+        $activity = Activity::find($id);
+
+        if(!isset($activity)) {
+            return redirect()->back()->with('errors', 'Não foi possível atualizar a atividade!');
+        }
+
+        $user = Auth::user();
+        
+        if($request->hasFile('filesActivities')) {
+            
+            Storage::disk('public')->delete('storage/'.$activity->filepath);
+            $newfilepath = $request->file('filesActivities')->store('filesActivities');
+            $activity->update([
+                'user_id' => $user->id,
+                'dicipline_id' => $request->dicipline,
+                'name' => $request->name,
+                'filepath' => $newfilepath,
+                'description' => $request->editor
+            ]);
+            return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
+        }
+
+        Storage::disk('public')->delete('storage/'.$activity->filepath);
+        $activity->update([
+            'user_id' => $user->id,
+            'dicipline_id' => $request->dicipline,
+            'name' => $request->name,
+            'filepath' => null,
+            'description' => $request->editor
+        ]);
+        return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
+    }
+
+    public function destroy($id) {
+        $activity = Activity::find($id);
+
+        if(!isset($activity)) {
+            return redirect()->back()->with('errors', 'Não foi possível excluir a atividade!');
+        }
+        
+        Storage::disk('public')->delete('public/storage/'.$activity->filepath);
+        $activity->delete();
+        return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
     }
 }

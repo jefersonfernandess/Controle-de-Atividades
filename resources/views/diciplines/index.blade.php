@@ -108,14 +108,11 @@
     <div class="container">
         <div class="row mt-2">
             @foreach ($diciplines as $dicipline)
-                <div class="col-4">
+                <div class="col-3">
                     <div class="card">
                         <h2 class="text-center mt-2">{{ $dicipline->name }}</h2>
                         <div class="card-body">
-                            <h4 class="card-title">Atividade nome</h4>
-                            <p class="mb-1">Descrição Lorem ipsum dolor sit amet consecsi</p>
-                            <p>Professor responsavel</p>
-                            <div class="opcoes d-flex justify-content-left aling-center gap-1">
+                            <div class="opcoes d-flex justify-content-center aling-center gap-1">
                                 <a href="#" class="btn btn-success">Vizualizar</a>
                                 <!-- Button edit modal -->
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"

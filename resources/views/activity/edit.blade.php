@@ -45,7 +45,7 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <form class="form-content" action="" method="post" enctype="multipart/form-data">
+            <form class="form-content" action="{{ route('activity.update', $activity->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="row">
@@ -60,7 +60,7 @@
                             <li><a class="dropdown-item" href="{{ route('activity.index') }}">Atividades</a></li>
                         </ul>
                     </div>
-                    <h2 class="text-center mb-4"><i>Crie sua nova atividade</i></h2>
+                    <h2 class="text-center mb-4"><i>Atualizar atividade</i></h2>
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -71,22 +71,25 @@
                         <div class="d-flex flex-column mb-3">
                             <label class="text-center" for="dicipline"><b>Diciplina da atividade</b></label>
                             <select name="dicipline" id="dicipline" class="js-user-option">
-                                <option selected value="{{ $activity->dicipline_id }}"></option>
                                 @foreach ($diciplines as $dicipline)
-                                    <option value="{{ $dicipline->id }}">{{ $dicipline->name }}</option>
+                                    @if ($dicipline->id == $activity->dicipline_id)
+                                        <option selected value="{{ $activity->dicipline_id }}">{{ $dicipline->name }}</option>
+                                    @else
+                                        <option value="{{ $dicipline->id }}">{{ $dicipline->name }}</option>
+                                    @endif
                                 @endforeach
-                            </select>
+                            </select>   
                         </div>
                         <div class="d-flex flex-column">
                             <label class="text-center" for="file"><b>Anexar arquivos da atividade</b></label>
                             <input class="form-control" type="file" id="formFile" name="filesActivities">
                         </div>
-                        
+
                     </div>
                     <div class="col-6">
                         <div class="d-flex flex-column keditor">
                             <label class="text-center" for="editor"><b>Descrição da atividade</b></label>
-                            <textarea name="editor" id="editor"></textarea>
+                            <textarea name="editor" id="editor">{{ $activity->description }}</textarea>
                         </div>
                     </div>
                 </div>
