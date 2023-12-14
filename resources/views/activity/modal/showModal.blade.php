@@ -7,7 +7,6 @@
                 <h5 class="modal-title" id="staticBackdropLabel">Nome da Atividade: <i>{{ $activity->name }}</i></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <h2 class="text-center mt-2 mb-1">Atividade</h2>
             <div class="modal-body mt-0">
                 <h4 class="card-title"></h4>
                 <div class="card">
@@ -25,6 +24,9 @@
                             </div>
                         </div>
                     @endif
+                </div>
+                <div class="activity-response d-flex justify-content-center aling-center">
+                    <a href="" class="text-center mt-2 link-secondary">Ver respostas</a>
                 </div>
             </div>
             <div class="modal-footer">

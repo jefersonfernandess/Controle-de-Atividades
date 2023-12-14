@@ -2,8 +2,6 @@
 
 @section('titulo', 'Atividades - Todas')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
-
     /*
             font-family: 'Montserrat', sans-serif;
             font-family: 'Roboto', sans-serif;

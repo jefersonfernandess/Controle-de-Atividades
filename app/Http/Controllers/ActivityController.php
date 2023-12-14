@@ -111,7 +111,7 @@ class ActivityController extends Controller
             return redirect()->back()->with('errors', 'Não foi possível excluir a atividade!');
         }
         
-        Storage::disk('public')->delete('public/storage/'.$activity->filepath);
+        Storage::delete('storage/' . $activity->filepath);
         $activity->delete();
         return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
     }
