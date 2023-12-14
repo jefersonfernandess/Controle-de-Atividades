@@ -1,5 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="createDiciplines" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editDiciplines-{{ $dicipline->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,17 +9,18 @@
             </div>
             <div class="modal-body">
                 <div class="container content">
-                    <form id="form" class="form-register" action="{{ route('diciplines.store') }}" method="post">
+                    <form id="form" class="form-register" action="{{ route('diciplines.update', $dicipline->id) }}" method="post">
                         @csrf
+                        @method('put')
                         <div class="row">
                             <div class="col d-flex justify-content-center">
-                                <h2>Nova diciplina</h2>
+                                <h2>Editar diciplina</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col d-flex flex-column justify-content-center">
                                 <input type="text" name="name" id="name" placeholder="Nome da diciplina"
-                                    value="{{ old('name') }}">
+                                    value="{{ $dicipline->name }}">
                                 @error('name')
                                     <span>{{ $message }}</span>
                                 @enderror
@@ -26,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col d-flex flex-column justify-content-center">
-                                <button class="btn btn-success" type="submit">Criar diciplina</button>
+                                <button class="btn btn-warning" type="submit">Atualizar diciplina</button>
                             </div>
                         </div>
                         @if (session('fail'))

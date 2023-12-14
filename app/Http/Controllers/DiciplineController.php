@@ -12,12 +12,8 @@ class DiciplineController extends Controller
 {
     public function index() {
         if (Auth::check()) {
-
-            $userRole = UserRole::where('role_id', 3)->get()->pluck('user_id');
-            $users = User::whereIn('id', $userRole)->orderBy('name', 'ASC')->get();
-
             $diciplines = Dicipline::get();
-            return view('diciplines.index', compact('users', 'diciplines'));
+            return view('diciplines.index', compact('diciplines'));
         }
 
         $users = false;
@@ -39,6 +35,26 @@ class DiciplineController extends Controller
         Dicipline::create([
             'name' => $request->name
         ]);
+        return redirect()->route('diciplines.index');
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $dicipline = Dicipline::find($id);
+        $dicipline->update($request->all());
+        return redirect()->route('diciplines.index');
+    }
+
+    public function destroy($id) {
+        $dicipline = Dicipline::find($id);
+
+        if(!isset($dicipline)) {
+            return back()->with('error', 'Não foi possível excluir a diciplína!');
+        }
+
+        $dicipline->delete();
         return redirect()->route('diciplines.index');
     }
 }

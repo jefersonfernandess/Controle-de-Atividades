@@ -9,13 +9,13 @@
             </div>
             <div class="modal-body d-flex justify-content-center gap-2">
                 <div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-angle-left" aria-hidden="true"></i> Voltar</button>
                 </div>
                 <div>
                     <form action="{{ route('student.unlink', $user->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Desvincular</button>
+                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa fa-chain-broken" aria-hidden="true"></i> Desvincular</button>
                     </form>
                 </div>
             </div>

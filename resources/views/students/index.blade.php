@@ -68,8 +68,8 @@
                             <!--Fim Editar-->
                             <!--Apagar-->
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-trash" aria-hidden="true"></i>
-                                Apagar
+                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-chain-broken" aria-hidden="true"></i>
+                                Desvincular
                             </button>
                             @include('students.modal.deleteStudent')
                             <!--Fim Apagar-->

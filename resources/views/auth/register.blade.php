@@ -90,6 +90,11 @@
                     </div>
                 </div>
             @endif
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <p>tem uma conta? clique <a href="{{ route('authlogin.index') }}">aqui</a> para fazer login</p>
+                </div>
+            </div>
         </form>
     </div>
 @endsection

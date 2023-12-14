@@ -25,19 +25,19 @@ class StudentController extends Controller
         return view('students.index', compact('users'));
     }
 
-    public function createNoRole() //Redirect view CREATE TEACHER NO ROLE
+    public function createNoRole() //Redirect view CREATE STUDENT NO ROLE
     {
         return view('students.createRules.createNoRole');
     }
 
-    public function createWithRole() //Redirect view CREATE TEACHER WITH ROLE
+    public function createWithRole() //Redirect view CREATE STUDENT WITH ROLE
     {
         $userRole = UserRole::where('role_id', 1)->get()->pluck('user_id');
         $users = User::whereIn('id', $userRole)->get();
         return view('students.createRules.createWithRole', compact('users'));
     }
 
-    public function storeStudent(RegisterStudentFormRequest $request) //CREATE new teacher account
+    public function storeStudent(RegisterStudentFormRequest $request) //CREATE new student account
     {
         if ($request) {
             $user = User::create([
@@ -53,11 +53,11 @@ class StudentController extends Controller
                 ]);
             }
 
-            return redirect()->route('student.index');
+            return redirect()->route('students.index')->with('success', 'Aluno criado com sucesso!');
         }
     }
 
-    public function updateRole(Request $request) //Upadate in ROLE
+    public function updateRole(Request $request) //Upadate in ROLE TO STUDENT
     {
         $validate = $request->validate([
             'userId' => 'required'
@@ -66,21 +66,21 @@ class StudentController extends Controller
         ]);
 
         if (!$validate) {
-            return redirect()->back()->with('update', 'Opção inválida! Selecione a opção correta.');
+            return redirect()->route('students.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
         }
 
         $userId = $request->userId;
         $teacherRole = UserRole::where('user_id', $userId)->first();
         $teacherRole->update(['role_id' => 2]);
 
-        return redirect()->route('student.index');
+        return redirect()->route('students.index')->with('success', 'Aluno vinculado com sucesso!');
     }
 
     public function updateStudent(Request $request, $id)  //UPDATE data teacher 
     {
         $user = User::find($id);
         if(!isset($user)) {
-            return redirect()->route('student.index')->with('erros', 'Não foi possível atualizar.');
+            return redirect()->route('student.index')->with('errors', 'Não foi possível atualizar.');
         };
 
         $user->update([
@@ -101,7 +101,7 @@ class StudentController extends Controller
         $studentRole = UserRole::where('user_id', $userId)->first();
         $studentRole->update(['role_id' => 1]);
 
-        return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');
+        return redirect()->route('students.index')->with('success', 'Professor excluido com sucesso!');
 
     }
 }

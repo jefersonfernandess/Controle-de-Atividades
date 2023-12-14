@@ -90,7 +90,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('diciplines.index') }}">Diciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <!-- Button trigger modal -->
+                        <!-- Button create modal -->
                         <button type="button" class="nav-link active border-none" data-bs-toggle="modal"
                             data-bs-target="#createDiciplines">
                             Nova Diciplina
@@ -117,8 +117,20 @@
                             <p>Professor responsavel</p>
                             <div class="opcoes d-flex justify-content-left aling-center gap-1">
                                 <a href="#" class="btn btn-success">Vizualizar</a>
-                                <a href="#" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Excluir</a>
+                                <!-- Button edit modal -->
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#editDiciplines-{{ $dicipline->id }}">
+                                    Editar
+                                </button>
+                                @include('diciplines.modal.editDiciplines')
+                                <!-- End -->
+                                <!-- Button delete modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteDiciplines-{{ $dicipline->id }}">
+                                    Excluir
+                                </button>
+                                @include('diciplines.modal.destroyDiciplines')
+                                <!-- End -->
                             </div>
                         </div>
                     </div>
