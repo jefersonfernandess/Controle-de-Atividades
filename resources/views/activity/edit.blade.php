@@ -2,10 +2,11 @@
 
 @section('titulo', 'Criar atividade - Atividade')
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
     body {
-        background-image: linear-gradient(to bottom, #f0a818, #f3ba39, #f6cb54, #fadb6f, #ffeb89);
+        //background-image: linear-gradient(to bottom, #f0a818, #f3ba39, #f6cb54, #fadb6f, #ffeb89);
+        background-image: linear-gradient(to top, #fb8351, #fc8b53, #fd9356, #fd9b5a, #fea35e, #fdac69, #fbb474, #fabc80, #f6c696, #f2d0ac, #eed9c3, #e9e2da);
     }
-
     .container {
         display: flex;
         justify-content: center;
@@ -27,20 +28,24 @@
         width: 80%;
         height: 0 auto;
         padding: 2rem;
-        border: 0.5rem solid #f0a818;
+        border: 0.5rem solid #fb8351;
         border-radius: 0.5rem;
-        background-color: #fdfaeb;
+        background-color: #e9e2da;
     }
 
-    .form-register h2 {
+    .form-content h2 {
         font-family: 'Montserrat', sans-serif;
     }
 
-    .form-register input {
+    .form-content input {
         font-family: 'Roboto', sans-serif;
         font-size: 1.2rem;
-        padding: 0.5rem;
     }
+
+    .form-content label {
+        font-family: 'Montserrat', sans-serif;
+    }
+
 </style>
 @section('content')
     <div class="container">
@@ -50,7 +55,7 @@
                 @method('put')
                 <div class="row">
                     <div class="dropdown">
-                        <a class="btn dropdown-toggle" style="background-color: #f0a818;" href="#" role="button"
+                        <a class="btn dropdown-toggle" style="background-color: #fb8351;" href="#" role="button"
                             id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             Menu
                         </a>
@@ -60,16 +65,16 @@
                             <li><a class="dropdown-item" href="{{ route('activity.index') }}">Atividades</a></li>
                         </ul>
                     </div>
-                    <h2 class="text-center mb-4"><i>Atualizar atividade</i></h2>
+                    <h2 class="text-center mb-4">Atualizar atividade</h2>
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="d-flex flex-column mb-3 mt-1">
-                            <label class="text-center" for="name"><b>Nome da atividade</b></label>
+                            <label class="text-center" for="name">Nome da atividade</label>
                             <input type="text" name="name" id="name" value="{{ $activity->name }}">
                         </div>
                         <div class="d-flex flex-column mb-3">
-                            <label class="text-center" for="dicipline"><b>Diciplina da atividade</b></label>
+                            <label class="text-center" for="dicipline">Diciplina da atividade</label>
                             <select name="dicipline" id="dicipline" class="js-user-option">
                                 @foreach ($diciplines as $dicipline)
                                     @if ($dicipline->id == $activity->dicipline_id)
@@ -81,21 +86,21 @@
                             </select>   
                         </div>
                         <div class="d-flex flex-column">
-                            <label class="text-center" for="file"><b>Anexar arquivos da atividade</b></label>
+                            <label class="text-center" for="file">Anexar arquivos da atividade</label>
                             <input class="form-control" type="file" id="formFile" name="filesActivities">
                         </div>
 
                     </div>
                     <div class="col-6">
                         <div class="d-flex flex-column keditor">
-                            <label class="text-center" for="editor"><b>Descrição da atividade</b></label>
+                            <label class="text-center" for="editor">Descrição da atividade</label>
                             <textarea name="editor" id="editor">{{ $activity->description }}</textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-4">
-                    <button class="btn" style="background-color: #f0a818;" type="submit">Criar atividade</button>
+                    <button class="btn" style="background-color: #fb8351;" type="submit">Atualizar atividade</button>
                 </div>
             </form>
         </div>

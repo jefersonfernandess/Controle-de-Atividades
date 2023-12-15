@@ -8,7 +8,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mt-0">
-                <h4 class="card-title"></h4>
+                <h4 class="card-title text-center">Atividade proposta</h4>
+                <p class="text-center"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></p>
                 <div class="card">
                     <div class="card-body">
                         {!! $activity->description !!}

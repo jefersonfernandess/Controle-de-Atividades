@@ -20,8 +20,7 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Roboto&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Roboto:wght@100;300;400&display=swap');
         nav {
             font-family: 'Kanit', sans-serif;
         }

@@ -75,7 +75,8 @@ Route::controller(SiteController::class)->group(function () {
         });
         //Activity Response controller routes
         Route::controller(ActivityResponseController::class)->group(function () {
-            Route::get('/reposta-atividades/', 'index')->name('responseacty.index');
+            Route::get('/respostas-atividades/', 'index')->name('responseacty.index');
+            Route::get('/reposta-atividade/{atividade}', 'showActivityResponse')->name('responseacty.show');
         });
     });
 });

@@ -63,7 +63,7 @@
                             <li><a class="dropdown-item" href="{{ route('activity.index') }}">Atividades</a></li>
                         </ul>
                     </div>
-                    <h2 class="text-center mb-4">Crie sua nova atividade</h2>
+                    <h2 class="text-center mb-4">Criar atividade</h2>
                 </div>
                 <div class="row">
                     <div class="col-6">

@@ -84,7 +84,7 @@
             @endif
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <p>Não possúi uma conta? clique <a href="{{ route('authregister.index') }}">aqui</a> para se registrar</p>
+                    <p>Não tem uma conta? clique <a href="{{ route('authregister.index') }}">aqui</a> para se registrar</p>
                 </div>
             </div>
         </form>
