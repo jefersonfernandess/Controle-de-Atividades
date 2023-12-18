@@ -46,10 +46,17 @@
     }
 
     .response-teacher {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 30rem;
-        margin: auto;
+        margin: auto !important;
         border: none;
         border-radius: 0.3rem;
+    }
+
+    .donwload button {
+        width: 15rem;
     }
 
     .note {
@@ -117,10 +124,11 @@
                 </div>
             </div>
             <div class="row mt-2 response-teacher">
-                <div class="col d-flex flex-column text-center">
+                <div class="col d-flex flex-column text-center donwload">
                     <label for="download">Arquivos enviado pelo aluno</label>
                     <button class="btn" name="download" style="background-color: #fb8351;"
-                        type="submit">Download</button>
+                        type="submit"><i class="fa fa-download" aria-hidden="true"></i>
+                         Download</button>
                 </div>
                 <div class="col d-flex flex-column text-center">
                     <label for="note">Nota</label>
