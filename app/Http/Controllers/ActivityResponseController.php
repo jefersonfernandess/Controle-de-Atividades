@@ -7,23 +7,21 @@ use App\Models\ActivityResponse;
 
 class ActivityResponseController extends Controller
 {
-
-    public function index() {
-
-        $activitiesResponse = ActivityResponse::with('activity')->get();
-        return view('activityResponse.index', compact('activitiesResponse'));
-    }
-
-    public function showActivityResponse($id)
+    public function indexActivityResponses($id)
     {
         $activity = Activity::find($id);
 
         if (isset($activity)) {
             $activitiesResponses = ActivityResponse::where('activity_id', $activity->id)->get();
-            return view('activityResponse.show', compact('activitiesResponses'));
+            return view('activityResponse.index', compact('activitiesResponses'));
         }
 
         $activitiesResponses = false;
-        return view('activityResponse.show', compact('activitiesResponses'));
+        return view('activityResponse.index', compact('activitiesResponses'));
+    }
+
+    public function showActivityResponse($id) {
+        $activityResponse = ActivityResponse::find($id);
+        return view('activityResponse.show', compact('activityResponse'));
     }
 }

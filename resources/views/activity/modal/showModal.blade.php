@@ -27,7 +27,7 @@
                     @endif
                 </div>
                 <div class="activity-response d-flex justify-content-center aling-center">
-                    <a href="" class="text-center mt-2 link-secondary">Ver respostas</a>
+                    <a href="{{ route('responseacty.index', $activity->id) }}" class="text-center mt-2 link-secondary">Ver respostas</a>
                 </div>
             </div>
             <div class="modal-footer">
