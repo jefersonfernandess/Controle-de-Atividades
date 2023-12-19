@@ -47,36 +47,38 @@
 
     .response-teacher {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        width: 30rem;
-        margin: auto !important;
-        border: none;
-        border-radius: 0.3rem;
     }
 
-    .donwload button {
-        width: 15rem;
+    .donwload {
+        width: 20rem;
     }
 
     .note {
-        align-self: center;
         font-size: 1.5rem;
         width: 3rem;
         height: 2rem;
         border: none;
     }
-
-    .check {
-        align-self: center;
+    .check-input {
         font-size: 0.5rem;
         width: 2rem;
         height: 2rem;
         border: none;
     }
 
+    .donwload-button {
+        border: 1px solid #e9e2da;
+    }
+
+    .donwload-button:hover {
+        border: 1px solid #fb8351;
+        transition: 400ms;
+    }
+
     .subtmit-button {
-        width: 100%;
+        width: 30rem;
     }
 </style>
 @section('content')
@@ -123,24 +125,24 @@
                         disabled>
                 </div>
             </div>
-            <div class="row mt-2 response-teacher">
-                <div class="col d-flex flex-column text-center donwload">
-                    <label for="download">Arquivos enviado pelo aluno</label>
-                    <button class="btn" name="download" style="background-color: #fb8351;"
-                        type="submit"><i class="fa fa-download" aria-hidden="true"></i>
-                         Download</button>
-                </div>
-                <div class="col d-flex flex-column text-center">
-                    <label for="note">Nota</label>
-                    <input class="text-center note" type="text" name="note">
-                </div>
-                <div class="col d-flex flex-column text-center">
-                    <label for="check">Visto</label>
-                    <input class="check" type="checkbox" name="check">
+            <div class="row mt-3">
+                <div class="response-teacher">
+                    <div class="text-center donwload">
+                        <label for="download">Arquivos enviado pelo aluno</label>
+                        <button class="donwload-button link-dark" name="download" type="submit"><i class="fa fa-download" aria-hidden="true"></i>   Download</button>
+                    </div>
+                    <div class="text-center d-flex flex-column">
+                        <label for="note">Nota</label>
+                        <input class="text-center note" type="text" name="note">
+                    </div>
+                    <div class="text-center d-flex flex-column me-5">
+                        <label for="check">Visto</label>
+                        <input class="check-input" type="checkbox" name="check">
+                    </div>
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col text-center">
+                <div class="col text-center mt-4">
                     <button class="btn subtmit-button" name="download" style="background-color: #fb8351;"
                         type="submit">Enviar</button>
                 </div>
