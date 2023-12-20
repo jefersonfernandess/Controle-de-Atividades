@@ -37,11 +37,11 @@ class ActivityController extends Controller
         }
 
         $user = Auth::user();
-        // $activities = Activity::with(['ActivityResponse' => function($query) use ($user) {
-        //     $query->where('user_id', $user->id)->get();
-        //     }])->get();
+        $activitiesStudentes = Activity::with(['ActivityResponse' => function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        }])->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
 
-        $activitiesStudentes = Activity::with('ActivityResponse')->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
+        // $activitiesStudentes = Activity::with('ActivityResponse')->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
         $activities = Activity::get();
         return view('students.activities.index', compact('user', 'activitiesStudentes', 'activities'));
     }
