@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActivityResponseFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 
@@ -23,5 +24,10 @@ class ActivityResponseController extends Controller
     public function showActivityResponse($id) {
         $activityResponse = ActivityResponse::find($id);
         return view('activityResponse.show', compact('activityResponse'));
+    }
+
+    public function storeActivityResponse(ActivityResponseFormRequest $request, $id) {
+        $activity = ActivityResponse::find($id);
+        dd($activity);
     }
 }

@@ -10,7 +10,6 @@
     .card {
         border: 1px solid #8f8f8f !important;
     }
-
 </style>
 @section('content')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,6 +23,9 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('student.index') }}">Alunos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('studantActivity.index') }}">Atividades</a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link active border-none" data-bs-toggle="modal"
@@ -58,14 +60,16 @@
                         <div class="card-body d-flex justify-content-center align-center gap-3">
                             <!--Editar-->
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#updateModal-{{ $user->id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                data-bs-target="#updateModal-{{ $user->id }}"><i class="fa fa-pencil-square-o"
+                                    aria-hidden="true"></i>
                                 Editar
                             </button>
                             @include('students.modal.updateStudent')
                             <!--Fim Editar-->
                             <!--Apagar-->
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-chain-broken" aria-hidden="true"></i>
+                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-chain-broken"
+                                    aria-hidden="true"></i>
                                 Desvincular
                             </button>
                             @include('students.modal.deleteStudent')
@@ -75,7 +79,6 @@
                 </div>
             @endforeach
         </div>
-    </div>
     </div>
     @include('students.modal.createStudent')
 @endsection

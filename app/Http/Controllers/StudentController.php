@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterStudentFormRequest;
+use App\Models\Activity;
+use App\Models\ActivityResponse;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -104,4 +106,9 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');
 
     }
+
+    public function studentResponseActivityIndex($id) {
+        $activity = Activity::find($id);
+        dd($activity);
+    }   
 }

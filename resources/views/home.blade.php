@@ -25,7 +25,7 @@
                                 <a class="nav-link active" href="">Portal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="">Atividades</a>
+                                <a class="nav-link active" href="{{ route('studantActivity.index') }}">Atividades</a>
                             </li>
                         @elseif ($userRole->role_id == 3)
                             <li class="nav-item">
@@ -35,7 +35,7 @@
                                 <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('activityTeacher.index', $user->id) }}">Atividades</a>
+                                <a class="nav-link active" href="">Atividades</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('diciplines.index') }}">Diciplinas</a>

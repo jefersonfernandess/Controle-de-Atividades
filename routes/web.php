@@ -7,6 +7,7 @@ use App\Http\Controllers\DiciplineController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Models\Activity;
 use App\Models\ActivityResponse;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,13 @@ Route::controller(SiteController::class)->group(function () {
         Route::controller(ActivityResponseController::class)->group(function () {
             Route::get('/respostas-atividade/{atividade}', 'indexActivityResponses')->name('responseacty.index');
             Route::get('/resposta-atividade/{atividade}', 'showActivityResponse')->name('responseacty.show');
+            Route::post('/resposta-atividade/corrigir/{atividade}/', 'storeActivityResponse')->name('responseacty.store');
+        });
+    });
+
+    Route::middleware(['auth', 'accessLevelStudent'])->group(function () {
+        Route::controller(ActivityController::class)->group(function () {
+            Route::get('/atividades/', 'studentActivitiesIndex')->name('studantActivity.index');
         });
     });
 });
