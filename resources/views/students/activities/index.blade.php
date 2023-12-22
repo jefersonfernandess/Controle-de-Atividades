@@ -80,8 +80,7 @@
                             <h5 class="card-title">{{ $activity->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $activity->User->name }}</h6>
                             <p class="card-text">{!! $activity->description !!}</p>
-                            <a href="#" class="card-link">Fazer atividade</a>
-                            <a href="#" class="card-link"></a>
+                            <a href="{{ route('studentActivityResponse.index', $activity->id) }}" class="card-link">Fazer atividade</a>
                         </div>
                     </div>
                 </div>

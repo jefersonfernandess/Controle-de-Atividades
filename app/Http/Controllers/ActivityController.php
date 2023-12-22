@@ -57,7 +57,7 @@ class ActivityController extends Controller
         $user = Auth::user();
         if ($request->filesActivities) {
             $path = $request->file('filesActivities')->store('filesActivities');
-            $activities = Activity::create([
+            Activity::create([
                 'user_id' => $user->id,
                 'dicipline_id' => $request->dicipline,
                 'name' => $request->name,

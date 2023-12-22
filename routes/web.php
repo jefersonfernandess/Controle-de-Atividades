@@ -50,7 +50,7 @@ Route::controller(SiteController::class)->group(function () {
             //Activity Response controller routes
             Route::controller(ActivityController::class)->group(function () {
                 Route::get('/atividades/', 'index')->name('activity.index');
-            }); 
+            });
         });
     });
     //Access routes for teacher level or higher
@@ -71,7 +71,7 @@ Route::controller(SiteController::class)->group(function () {
             Route::post('/atividades/cadastrando-atividade/', 'store')->name('activity.store');
             Route::get('/atividades/ver/{atividade}', 'show')->name('activity.show');
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
-            Route::put('/atividades/atualizando-atividade/{atividade}', 'update')->name('activity.update'); 
+            Route::put('/atividades/atualizando-atividade/{atividade}', 'update')->name('activity.update');
             Route::delete('/atividades/apagando-atividade/{atividade}', 'destroy')->name('activity.destroy');
         });
         //Activity Response controller routes
@@ -85,6 +85,11 @@ Route::controller(SiteController::class)->group(function () {
     Route::middleware(['auth', 'accessLevelStudent'])->group(function () {
         Route::controller(ActivityController::class)->group(function () {
             Route::get('/atividades/', 'studentActivitiesIndex')->name('studantActivity.index');
+        });
+
+        Route::controller(ActivityResponseController::class)->group(function () {
+            Route::get('/atividade/responder/{atividade}', 'studentActivitiesResponses')->name('studentActivityResponse.index');
+            Route::post('/atividade/responder/salvando/', 'studentActivitiesReponsesStore')->name('studentActivityReponse.store');
         });
     });
 });
