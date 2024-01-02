@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('activity_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('check');
-            $table->float('note');
-            $table->string('filepath');
+            $table->float('note')->nullable();
+            $table->string('filepath')->nullable();
             $table->string('description');
             $table->timestamps();
         });

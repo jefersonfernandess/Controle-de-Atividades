@@ -38,7 +38,10 @@
         border: 1px solid none;
         border-radius: 0.5rem;
         width: 30rem;
+    }
 
+    .proposed-activity div {
+        
     }
 
     .activity-response {
@@ -56,6 +59,10 @@
         margin: auto;
         border: none;
         border-radius: 0.3rem;
+    }
+
+    .files {
+        width: 30rem;
     }
 
     .subtmit-button {
@@ -86,7 +93,7 @@
         </div>
     </nav>
     <div class="main-content">
-        <form class="content" action="{{ route('studentActivityReponse.store') }}" method="POST">
+        <form class="content" action="{{ route('studentActivityReponse.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-2">
                 <div class="col text-center">
@@ -96,6 +103,7 @@
             <div class="row mt-2">
                 <div class="col d-flex flex-column text-center data-response">
                     <input class="text-center" type="text" name="user" value="{{ $user->id }}" hidden>
+                    <input class="text-center" type="text" name="activity_id" value="{{ $activity->id }}" hidden>
                 </div>
             </div>
             <div class="row mt-4">
@@ -118,7 +126,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="d-flex justify-content-center aling-center">
+                        <div class="text-center files">
+                            <label class="text-center" for="file">Anexar arquivos da atividade</label>
+                            <input class="form-control form-control-sm" type="file" id="formFile" name="filesActivities">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
                 <div class="col text-center">
                     <div class="submit-button">
                         <button class="btn subtmit-button text-center" style="background-color: #fb8351;"

@@ -37,6 +37,14 @@
         font-size: 1.5rem;
     }
 
+    .student-response {
+        background-color: white;
+        width: 30rem;
+        margin: auto;
+        border: none;
+        border-radius: 0.3rem; 
+    }
+
     .data-response input {
         background-color: white;
         width: 30rem;
@@ -122,8 +130,9 @@
             <div class="row mt-2">
                 <div class="col d-flex flex-column text-center data-response">
                     <label for="name">Resposta do aluno</label>
-                    <input class="text-center" type="text" name="name" value="{{ $activityResponse->description }}"
-                        disabled>
+                    <div class="student-response">
+                        {!! $activityResponse->description !!}
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">

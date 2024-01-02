@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityResponseFormRequest extends FormRequest
+class ActivityResponseStudentFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,13 @@ class ActivityResponseFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'note' => ['required'],
+            'editor' => ['required'],
         ];
     }
 
     public function messages() {
         return [
-            'note.required' => 'Você precisa dar uma nota!'
+            'editor.required' => 'Você precisa responder a atividade!'
         ];
     }
 }
