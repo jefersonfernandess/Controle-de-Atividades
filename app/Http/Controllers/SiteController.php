@@ -12,12 +12,12 @@ class SiteController extends Controller
     {
 
         if (Auth::check()) {
-            $user = Auth::user();
-            $userRole = $user->UserRole;
-            return view('home', compact('user', 'userRole'));
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            return view('home', compact('userAuth', 'roleUser'));
         }
 
-        $user = false;
-        return view('home', compact('user'));
+        $userAuth = false;
+        return view('home', compact('userAuth'));
     }
 }

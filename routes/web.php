@@ -8,8 +8,6 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Activity;
-use App\Models\ActivityResponse;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*

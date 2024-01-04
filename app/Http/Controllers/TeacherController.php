@@ -15,10 +15,15 @@ class TeacherController extends Controller
     {
         if (Auth::check()) {
 
+            //Sidebar dependences
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+
+            //Rules from teacher
             $userRole = UserRole::where('role_id', 3)->get()->pluck('user_id');
             $users = User::whereIn('id', $userRole)->get();
 
-            return view('teacher.index', compact('users'));
+            return view('teacher.index', compact('users', 'userAuth', 'roleUser'));
         }
 
         $users = false;
