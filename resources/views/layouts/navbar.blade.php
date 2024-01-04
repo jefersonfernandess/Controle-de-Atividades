@@ -23,7 +23,11 @@
                                 <button class="btn dropdown-toggle offcanvas-title" type="button"
                                     id="dropdownMenuButton" data-bs-toggle="dropdown"
                                     style="background-color: #ffffff; ">
-                                    Olá {{ $userAuth->name }}
+                                    @if ($userAuth)
+                                        Olá {{ $userAuth->name }}
+                                    @else
+                                        Olá Usuário
+                                    @endif
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
