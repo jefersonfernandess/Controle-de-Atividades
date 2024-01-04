@@ -17,10 +17,14 @@ class StudentController extends Controller
 
         if (Auth::check()) {
 
+            //Sidebar dependences
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            
             $userRole = UserRole::where('role_id', 2)->get()->pluck('user_id');
             $users = User::whereIn('id', $userRole)->orderBy('name', 'ASC')->get();
 
-            return view('students.index', compact('users'));
+            return view('students.index', compact('users', 'userAuth', 'roleUser'));
         }
 
         $users = false;

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('titulo', 'Home - Page')
+
 @section('content')
     @include('layouts.navbar')
     <div class="container">

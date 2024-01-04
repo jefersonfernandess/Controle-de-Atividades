@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
     <!-- Container wrapper -->
-    <div class="container-fluid">
+    <div class="container">
         <!-- Toggle button -->
         <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarCenteredExample"
             aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+        <div class="collapse navbar-collapse d-flex justify-content-around aling-center" id="navbarCenteredExample">
             <!-- Left links -->
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -37,7 +37,7 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <ul class="navbar-nav d-flex flex-column    ">
+                            <ul class="navbar-nav d-flex flex-column">
                                 @if ($userAuth)
                                     @if ($roleUser->role_id == 1)
                                         <p>
@@ -118,6 +118,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active">JL Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active">Pesquisar</a>
                 </li>
                 @if (!$userAuth)
                     <li class="nav-item">

@@ -23,6 +23,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Roboto:wght@100;300;400&display=swap');
         nav {
             font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            background-color: #fb8351;
+            color: white !important;
         }
     </style>
 </head>
