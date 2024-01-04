@@ -32,13 +32,27 @@ class ActivityResponseController extends Controller
 
     public function studentActivitiesResponses($id) {
         $user = Auth::user();
-        $activity = Activity::find($id);
+        $activity = Activity::find($id);    
         return view('students.activities.responseActivity', compact('activity', 'user'));
     }
     
+    //for the teacher to correct the activity 
     public function storeActivityResponse(ActivityResponseFormRequest $request, $id) {
-        $activity = ActivityResponse::find($id);
-        dd($request->all());
+        $activityResponseStudent = ActivityResponse::find($id);
+        if($request->check == null) {
+            $activityResponseStudent->update([
+                'note' => $request->note,
+                'check'=> false
+            ]);
+
+            return redirect()->route('responseacty.index', $activityResponseStudent->activity_id);
+        }
+
+        $activityResponseStudent->update([
+            'note' => $request->note,
+            'check'=> true
+        ]);
+        return redirect()->route('responseacty.index', $activityResponseStudent->activity_id);
     }
 
     //Student's answer
