@@ -24,8 +24,11 @@
         nav {
             font-family: 'Kanit', sans-serif;
             font-size: 1.2rem;
-            background-color: #fb8351;
-            color: white !important;
+            background-color: #add4d3;
+        }
+
+        .colorTextWhite {
+            color: #333237 !important;
         }
     </style>
 </head>

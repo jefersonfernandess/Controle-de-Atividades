@@ -1,48 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
     <!-- Container wrapper -->
-    <div class="container">
+    <div class="container-fluid">
         <!-- Toggle button -->
-        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarCenteredExample"
-            aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse d-flex justify-content-around aling-center" id="navbarCenteredExample">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left links -->
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="offcanvas" href="#sideBar" role="button"
-                        aria-controls="offcanvasExample">
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                        Menu
-                    </a>
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="sideBar"
-                        aria-labelledby="offcanvasExampleLabel" style="width: 20rem; !important">
-                        <div class="offcanvas-header">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle offcanvas-title" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                    style="background-color: #ffffff; ">
-                                    @if ($userAuth)
-                                        Olá {{ $userAuth->name }}
-                                    @else
-                                        Olá Usuário
-                                    @endif
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-                                    <form action="{{ route('authlogout.logout') }}" method="post">
-                                        @csrf
-                                        <button class="dropdown-item" type="submit">Sair da conta</button>
-                                    </form>
-                                </ul>
+                @if ($userAuth)
+                    <li class="nav-item">
+                        <a class="nav-link active colorTextWhite" data-bs-toggle="offcanvas" href="#sideBar"
+                            role="button" aria-controls="offcanvasExample">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </a>
+                        <div class="offcanvas offcanvas-start" tabindex="-1" id="sideBar"
+                            aria-labelledby="offcanvasExampleLabel" style="width: 20rem; !important">
+                            <div class="offcanvas-header">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle offcanvas-title" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                        style="background-color: #ffffff; ">
+                                        <i class="fa-solid fa-user fa-sm" style="color: #000000;"></i> Olá
+                                        {{ $userAuth->name }}
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+                                        <form action="{{ route('authlogout.logout') }}" method="post">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit">Sair da conta</button>
+                                        </form>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
                             </div>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <ul class="navbar-nav d-flex flex-column">
-                                @if ($userAuth)
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav d-flex flex-column">
                                     @if ($roleUser->role_id == 1)
                                         <p>
                                             <a class="" data-bs-toggle="collapse" href="#collapseExample"
@@ -86,7 +82,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#dashboard"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="fa-solid fa-gauge" style="color: #000000;"></i> Portal
+                                                <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
+                                                    class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.dashboard')
 
@@ -94,7 +92,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#activities"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades
+                                                <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
+                                                    class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.activities')
                                         </li>
@@ -102,7 +102,8 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#students"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                Alunos
+                                                Alunos <i class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.students')
                                         </li>
@@ -110,25 +111,33 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#teaches"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa fa-chalkboard-user" style="color: #000000;"></i>
-                                                Professores
+                                                Professores <i class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.teaches')
                                         </li>
                                     @endif
-                                @endif
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active">JL Cursos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active">Pesquisar</a>
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active colorTextWhite">JL Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="O que você está buscando? "
+                                aria-label="Search" style="width: 15rem;">
+                            <button class="btn btn-outline-success" type="submit">Pesquise</button>
+                        </form>
+                    </li>
+                @endif
                 @if (!$userAuth)
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('authlogin.index') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">JL Cursos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('authregister.index') }}">Registro</a>
