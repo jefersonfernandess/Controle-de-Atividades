@@ -65,17 +65,30 @@
                                         </li>
                                     @elseif ($roleUser->role_id == 3)
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="">Portal</a>
+                                            <a class="nav-link active" data-bs-toggle="collapse"
+                                                href="#dashboardTeacher" role="button" aria-expanded="false"
+                                                aria-controls="collapseExample">
+                                                <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                            </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="{{ route('student.index') }}">Alunos</a>
+                                            <a class="nav-link active" data-bs-toggle="collapse"
+                                                href="#activitiesTeacher" role="button" aria-expanded="false"
+                                                aria-controls="collapseExample">
+                                                <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                            </a>
+                                            @include('layouts.collapseSideBar.teacher.activitiesTeacher')
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="">Atividades</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active"
-                                                href="{{ route('diciplines.index') }}">Diciplinas</a>
+                                            <a class="nav-link active" data-bs-toggle="collapse" href="#students"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                Alunos <i class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
+                                            </a>
+                                            @include('layouts.collapseSideBar.students')
                                         </li>
                                     @elseif ($roleUser->role_id == 4)
                                         <li class="nav-item">
@@ -85,13 +98,13 @@
                                                     class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.dashboard')
-
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#diciplines"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="fa-solid fa-book-open fa-sm" style="color: #000000;"></i> Diciplinas <i
-                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                                <i class="fa-solid fa-book-open fa-sm" style="color: #000000;"></i>
+                                                Diciplinas <i class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.diciplines')
                                         </li>
@@ -99,7 +112,8 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#activities"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
-                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                                    class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.activities')
                                         </li>
