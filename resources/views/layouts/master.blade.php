@@ -24,12 +24,17 @@
         nav {
             font-family: 'Kanit', sans-serif;
             font-size: 1.2rem;
-            background-color: #add4d3;
+            background-color: #fb8351;
         }
 
         .colorTextWhite {
-            color: #333237 !important;
+            color: white !important;
         }
+
+        .card > a:hover {
+            border-bottom: 1px solid #000000;
+        }
+
     </style>
 </head>
 

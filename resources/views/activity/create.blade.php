@@ -3,10 +3,12 @@
 @section('titulo', 'Criar atividade - Atividade')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+
     body {
         //background-image: linear-gradient(to bottom, #f0a818, #f3ba39, #f6cb54, #fadb6f, #ffeb89);
         background-image: linear-gradient(to top, #fb8351, #fc8b53, #fd9356, #fd9b5a, #fea35e, #fdac69, #fbb474, #fabc80, #f6c696, #f2d0ac, #eed9c3, #e9e2da);
     }
+
     .container {
         display: flex;
         justify-content: center;
@@ -45,7 +47,6 @@
     .form-content label {
         font-family: 'Montserrat', sans-serif;
     }
-
 </style>
 @section('content')
     <div class="container">
@@ -54,14 +55,8 @@
                 @csrf
                 <div class="row">
                     <div class="dropdown">
-                        <a class="btn dropdown-toggle" style="background-color: #fb8351;" href="#" role="button"
-                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menu
+                        <a class="btn" style="background-color: #fb8351;" href="{{ route('site.index') }}">Home
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('site.index') }}">Home</a></li>
-                            <li><a class="dropdown-item" href="{{ route('activity.index') }}">Atividades</a></li>
-                        </ul>
                     </div>
                     <h2 class="text-center mb-4">Criar atividade</h2>
                 </div>
@@ -82,9 +77,10 @@
                         </div>
                         <div class="d-flex flex-column">
                             <label class="text-center" for="file">Anexar arquivos da atividade</label>
-                            <input class="form-control form-control-sm" type="file" id="formFile" name="filesActivities">
+                            <input class="form-control form-control-sm" type="file" id="formFile"
+                                name="filesActivities">
                         </div>
-                        
+
                     </div>
                     <div class="col-6">
                         <div class="d-flex flex-column keditor">

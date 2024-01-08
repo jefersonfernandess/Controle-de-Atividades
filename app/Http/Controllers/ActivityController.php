@@ -136,4 +136,16 @@ class ActivityController extends Controller
         $activity->delete();
         return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
     }
+
+    public function indexTeacherActivities()
+    {
+        if (Auth::user()) {
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            $teacherActivities = Activity::where('user_id', $userAuth->id)->get();
+            dd($teacherActivities);
+            return view('activity.teacherActivities.index', compact('teacherActivities', 'userAuth', 'roleUser'));
+        }
+        return back()->with('erros', 'Não foi possível acessar as suas atividades!');
+    }
 }

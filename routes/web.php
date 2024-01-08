@@ -67,6 +67,7 @@ Route::controller(SiteController::class)->group(function () {
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
             Route::put('/atividades/atualizando-atividade/{atividade}', 'update')->name('activity.update');
             Route::delete('/atividades/apagando-atividade/{atividade}', 'destroy')->name('activity.destroy');
+            Route::get('/atividades/professor/suas-atividades/','indexTeacherActivities')->name('activitiesTeacher.index');
         });
         //ActivityResponse controller routes (INDEX, SHOW, STORE)
         Route::controller(ActivityResponseController::class)->group(function () {
