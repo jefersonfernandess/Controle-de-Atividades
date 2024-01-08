@@ -89,14 +89,12 @@
 </style>
 @section('content')
     @include('layouts.navbar')
-    <h1>Professor atividades</h1>
-    <main class="main">
+    <main class="main mt-4">
         <div class="container">
             <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col-4">Nome da atividade</th>
-                        <th scope="col-4">Professor responsavel</th>
                         <th scope="col-2">Diciplina da atividade</th>
                         <th scope="col-2"><i class="fa fa-cogs" aria-hidden="true"></i></th>
                     </tr>
@@ -105,7 +103,6 @@
                     @foreach ($teacherActivities as $activity)
                         <tr>
                             <td>{{ $activity->name }}</td>
-                            <td>{{ $activity->User->name }}</td>
                             <td>{{ $activity->Dicipline->name }}</td>
                             <td>
                                 <div class="d-flex gap-2">
@@ -124,12 +121,43 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <form action="{{ route('activity.destroy', $activity->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"
-                                                    aria-hidden="true"></i></button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Você quer *APAGAR* essa atividade
+                                                        <div class="d-flex justify-content-center">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Voltar</button>
+                                                            <div>
+                                                                <form
+                                                                    action="{{ route('activity.destroy', $activity->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-danger"
+                                                                        type="submit">Apagar</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
