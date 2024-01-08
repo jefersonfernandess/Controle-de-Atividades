@@ -12,13 +12,13 @@
                     @csrf
                     @method('PUT')
                     <div class="container">
-                        <div class="row">
+                        <div class="row mb-2">
                             <input type="text" name="name" id="name" value="{{ $user->name }}" placeholder="Nome">
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <input type="text" name="email" id="email" value="{{ $user->email }}" placeholder="Email">
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <button type="submit" class="btn btn-success">Atualizar</button>
                         </div>
                     </div>

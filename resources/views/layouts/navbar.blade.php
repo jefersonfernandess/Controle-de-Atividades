@@ -8,8 +8,7 @@
         </button>
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left links -->
-            <ul class="navbar-nav mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center aling-center">
                 @if ($userAuth)
                     <li class="nav-item">
                         <a class="nav-link active colorTextWhite" data-bs-toggle="offcanvas" href="#sideBar"
@@ -83,18 +82,24 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#dashboard"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
-                                                    class="fa-solid fa-chevron-down fa-xs"
-                                                    style="color: #000000;"></i>
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.dashboard')
 
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="collapse" href="#diciplines"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <i class="fa-solid fa-book-open fa-sm" style="color: #000000;"></i> Diciplinas <i
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                            </a>
+                                            @include('layouts.collapseSideBar.diciplines')
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#activities"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
-                                                    class="fa-solid fa-chevron-down fa-xs"
-                                                    style="color: #000000;"></i>
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.activities')
                                         </li>
@@ -122,14 +127,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active colorTextWhite">JL Cursos</a>
-                    </li>
-                    <li class="nav-item">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="O que você está buscando? "
-                                aria-label="Search" style="width: 15rem;">
-                            <button class="btn btn-outline-success" type="submit">Pesquise</button>
-                        </form>
+                        <a class="nav-link active colorTextWhite" href="/">JL Cursos</a>
                     </li>
                 @endif
                 @if (!$userAuth)
@@ -144,9 +142,6 @@
                     </li>
                 @endif
             </ul>
-            <!-- Left links -->
         </div>
-        <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
 </nav>

@@ -26,8 +26,8 @@ Route::controller(SiteController::class)->group(function () {
 
     //Access routes for admin level or higher
     Route::middleware(['auth', 'accessLevelAdmin'])->group(function () {
-        //Teacher controller routes
         Route::prefix('admin')->group(function () {
+            //Teacher controller routes (CREATE, UPDATE AND DELETE)
             Route::controller(TeacherController::class)->group(function () {
                 Route::get('/professor/', 'index')->name('teacher.index');
                 Route::get('/professor/adicionar/', 'createNoRole')->name('teacher.createNoRole');
@@ -38,16 +38,12 @@ Route::controller(SiteController::class)->group(function () {
                 Route::delete('/professor/desvinculando/{professor}', 'unlinkTeacher')->name('teacher.unlink');
                 Route::delete('/professor/apagando/{professor}', 'destroyTeacher')->name('teacher.destroy');
             });
-            //Diciplines controller routes
+            //Diciplines controller routes (CREATE, UPDATE AND DELETE)
             Route::controller(DiciplineController::class)->group(function () {
                 Route::get('/diciplinas/', 'index')->name('diciplines.index');
                 Route::post('/diciplinas/criando', 'store')->name('diciplines.store');
                 Route::put('/diciplinas/atualizando/{diciplina}', 'update')->name('diciplines.update');
                 Route::delete('/diciplina/excluindo/{diciplina}', 'destroy')->name('diciplines.destroy');
-            });
-            //Activity Response controller routes
-            Route::controller(ActivityController::class)->group(function () {
-                Route::get('/atividades/', 'index')->name('activity.index');
             });
         });
     });
@@ -88,6 +84,10 @@ Route::controller(SiteController::class)->group(function () {
         Route::controller(ActivityResponseController::class)->group(function () {
             Route::get('/atividade/responder/{atividade}', 'studentActivitiesResponses')->name('studentActivityResponse.index');
             Route::post('/atividade/responder/salvando/', 'studentActivitiesReponsesStore')->name('studentActivityReponse.store');
+        });
+
+        Route::controller(ActivityController::class)->group(function () {
+            Route::get('/atividades/', 'index')->name('activity.index');
         });
     });
 });
