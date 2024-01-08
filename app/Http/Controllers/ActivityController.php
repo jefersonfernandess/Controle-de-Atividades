@@ -65,7 +65,7 @@ class ActivityController extends Controller
                 'description' => $request->editor
             ]);
 
-            return redirect()->route('activity.index')->with('success', 'Atividade criada com sucesso!');
+            return redirect()->route('site.index')->with('success', 'Atividade criada com sucesso!');
         }
         Activity::create([
             'user_id' => $user->id,
@@ -73,7 +73,7 @@ class ActivityController extends Controller
             'name' => $request->name,
             'description' => $request->editor
         ]);
-        return redirect()->route('activity.index')->with('success', 'Atividade criada com sucesso!');
+        return redirect()->route('site.index')->with('success', 'Atividade criada com sucesso!');
     }
 
     public function show($id)
@@ -134,7 +134,7 @@ class ActivityController extends Controller
 
         Storage::delete('storage/' . $activity->filepath);
         $activity->delete();
-        return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
+        return redirect()->back()->with('success', 'Atividade atualizada com sucesso!');
     }
 
     public function indexTeacherActivities()
@@ -143,7 +143,6 @@ class ActivityController extends Controller
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
             $teacherActivities = Activity::where('user_id', $userAuth->id)->get();
-            dd($teacherActivities);
             return view('activity.teacherActivities.index', compact('teacherActivities', 'userAuth', 'roleUser'));
         }
         return back()->with('erros', 'Não foi possível acessar as suas atividades!');
