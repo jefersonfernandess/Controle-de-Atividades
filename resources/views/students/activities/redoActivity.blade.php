@@ -109,7 +109,7 @@
             <div class="row mt-4">
                 <div class="col d-flex justify-content-center text-center">
                     <div class="proposed-activity">
-                        <p><b>Atividade proposta</b></p>
+                        <p><b>Sua resposta</b></p>
                         <div>
                             {!! $activityResponse->description !!}
                         </div>
@@ -120,7 +120,7 @@
                 <div class="col">
                     <div class="d-flex justify-content-center aling-center">
                         <div class="text-center activity-response keditor">
-                            <label class="text-center" for="editor">Refazer atividade</label>
+                            <label class="text-center" for="editor">Nova resposta</label>
                             <textarea name="editor" id="editor" rows="5" cols="33"></textarea>
                         </div>
                     </div>
