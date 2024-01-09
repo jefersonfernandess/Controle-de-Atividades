@@ -79,7 +79,7 @@ Route::controller(SiteController::class)->group(function () {
 
     Route::middleware(['auth', 'accessLevelStudent'])->group(function () {
         Route::controller(ActivityController::class)->group(function () {
-            Route::get('/atividades/', 'studentActivitiesIndex')->name('studantActivity.index');
+            Route::get('/aluno/atividades/', 'indexStudentActivities')->name('activitiesStudent.index');
         });
 
         Route::controller(ActivityResponseController::class)->group(function () {

@@ -29,23 +29,6 @@ class ActivityController extends Controller
         return view('activity.index', compact('users', 'activities'));
     }
 
-    public function studentActivitiesIndex()
-    {
-        if (!Auth::check()) {
-            $users = false;
-            return view('students.activities.index', compact('users', 'activities'));
-        }
-
-        $user = Auth::user();
-        $activitiesStudentes = Activity::with(['ActivityResponse' => function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        }])->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
-
-        // $activitiesStudentes = Activity::with('ActivityResponse')->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
-        $activities = Activity::get();
-        return view('students.activities.index', compact('user', 'activitiesStudentes', 'activities'));
-    }
-
     public function create()
     {
         $diciplines = Dicipline::get();
@@ -146,5 +129,36 @@ class ActivityController extends Controller
             return view('activity.teacherActivities.index', compact('teacherActivities', 'userAuth', 'roleUser'));
         }
         return back()->with('erros', 'Não foi possível acessar as suas atividades!');
+    }
+
+    public function indexStudentActivities() {
+        if(Auth::user()) {
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            $activityResponseTrue = Activity::with(['ActivityResponse' => function ($query) use ($userAuth) {
+                $query->where('user_id', $userAuth->id);
+            }])->whereRelation('ActivityResponse', 'user_id', $userAuth->id)->get();
+            $activitiesResponseId = $activityResponseTrue->pluck('id');
+            $activityResponseFalse = Activity::with('ActivityResponse')->whereNotIn('id', $activitiesResponseId)->get();
+            return view('students.activities.index', compact('activityResponseTrue', 'activityResponseFalse', 'userAuth', 'roleUser'));
+        }
+        dd('deu erro');
+        return back()->with('erros', 'Não foi possível acessar as suas atividades!');
+    }
+
+    public function studentActivitiesIndex()
+    {
+        if (!Auth::check()) {
+            $users = false;
+            return view('/');
+        }
+
+        $user = Auth::user();
+       
+        
+
+        // // $activitiesStudentes = Activity::with('ActivityResponse')->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
+        $activities = Activity::get();
+        return view('students.activities.index', compact('user', 'activitiesStudentes', 'activities'));
     }
 }

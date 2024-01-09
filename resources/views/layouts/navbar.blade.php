@@ -57,11 +57,21 @@
                                         </li>
                                     @elseif ($roleUser->role_id == 2)
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="">Portal</a>
+                                            <a class="nav-link active" data-bs-toggle="collapse" href="#dashboard"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                            </a>
+                                            @include('layouts.collapseSideBar.dashboard')
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active"
-                                                href="">Atividades</a>
+                                            <a class="nav-link active" data-bs-toggle="collapse"
+                                                href="#activitiesStudents" role="button" aria-expanded="false"
+                                                aria-controls="collapseExample">
+                                                <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
+                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                            </a>
+                                            @include('layouts.collapseSideBar.student.activitiesStudents')
                                         </li>
                                     @elseif ($roleUser->role_id == 3)
                                         <li class="nav-item">
@@ -77,7 +87,8 @@
                                                 href="#activitiesTeacher" role="button" aria-expanded="false"
                                                 aria-controls="collapseExample">
                                                 <i class="fa-solid fa-book" style="color: #000000;"></i> Atividades <i
-                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                                    class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.teacher.activitiesTeacher')
                                         </li>
@@ -95,7 +106,8 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#dashboard"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
-                                                    class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
+                                                    class="fa-solid fa-chevron-down fa-xs"
+                                                    style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.dashboard')
                                         </li>
@@ -152,7 +164,8 @@
                         <a class="nav-link active colorTextWhite" href="/">JL Cursos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active colorTextWhite" href="{{ route('authregister.index') }}">Registro</a>
+                        <a class="nav-link active colorTextWhite"
+                            href="{{ route('authregister.index') }}">Registro</a>
                     </li>
                 @endif
             </ul>
