@@ -93,7 +93,7 @@
         </div>
     </nav>
     <div class="main-content">
-        <form class="content" action="{{ route('studentActivityReponse.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="content" action="" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-2">
                 <div class="col text-center">

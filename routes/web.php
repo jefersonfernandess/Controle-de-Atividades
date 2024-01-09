@@ -85,7 +85,8 @@ Route::controller(SiteController::class)->group(function () {
         Route::controller(ActivityResponseController::class)->group(function () {
             Route::get('/atividade/responder/{atividade}', 'studentActivitiesResponses')->name('studentActivityResponse.index');
             Route::post('/atividade/responder/salvando/', 'studentActivitiesReponsesStore')->name('studentActivityReponse.store');
-            Route::get('/atividade/refazer/{atividade}', 'studentRedoAcitivity')->name('studentRedoActivity.edit');
+            Route::get('/atividade/refazer/{atividade}', 'studentRedoAcitivityEdit')->name('studentRedoActivity.edit');
+            Route::put('/atividade/refazer/atualizando/', 'studentRedoAcitivityUpdate');
         });
 
         Route::controller(ActivityController::class)->group(function () {

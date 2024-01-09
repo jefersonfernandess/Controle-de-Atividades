@@ -88,13 +88,17 @@ class ActivityResponseController extends Controller
         return redirect()->route('activity.index')->with('success', 'Atividade respondida com sucesso!');
     }
 
-    public function studentRedoAcitivity($id)
+    public function studentRedoAcitivityEdit($id)
     {
         $activityResponse = ActivityResponse::find($id);
         if ($activityResponse->check == false) {
             return view('students.activities.redoActivity', compact('activityResponse'));
         }
-        
+
         return back()->with('erros', 'Você não pode refazer essa atividade!');
+    }
+
+    public function studentRedoAcitivityUpdate() {
+
     }
 }
