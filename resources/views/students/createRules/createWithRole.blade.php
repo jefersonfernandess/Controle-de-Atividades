@@ -84,6 +84,13 @@
                     <button class="btn btn-dark" type="submit">Tornar aluno</button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center aling-center">
+                    <div>
+                        <i class="fa-solid fa-circle-chevron-left fa-sm" style="color: #000000;"></i> <a href="javascript:history.back()" class="link-secondary">Voltar</a>
+                    </div>
+                </div>
+            </div>
             @if (session('fail'))
                 <div class="row">
                     <div class="col d-flex justify-content-center ">
@@ -99,5 +106,8 @@
         $(document).ready(function() {
             $('.js-user-option').select2();
         });
+    </script>
+    <script>
+        document.write('<a href="' + document.referrer + '">Go Back</a>');
     </script>
 @endsection

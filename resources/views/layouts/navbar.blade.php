@@ -61,7 +61,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active"
-                                                href="{{ route('studantActivity.index') }}">Atividades</a>
+                                                href="">Atividades</a>
                                         </li>
                                     @elseif ($roleUser->role_id == 3)
                                         <li class="nav-item">
@@ -146,13 +146,13 @@
                 @endif
                 @if (!$userAuth)
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('authlogin.index') }}">Login</a>
+                        <a class="nav-link active colorTextWhite" href="{{ route('authlogin.index') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">JL Cursos</a>
+                        <a class="nav-link active colorTextWhite" href="/">JL Cursos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('authregister.index') }}">Registro</a>
+                        <a class="nav-link active colorTextWhite" href="{{ route('authregister.index') }}">Registro</a>
                     </li>
                 @endif
             </ul>
