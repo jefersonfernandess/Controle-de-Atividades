@@ -33,7 +33,7 @@
                             @if ($activityResponse->check == false)
                                 <td><i>Esperando correção</i></td>
                                 <td>
-                                    <a href="" class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>Refazer</a>
+                                    <a href="{{ route('studentRedoActivity.edit', $activityResponse->id) }}" class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Refazer</a>
                                 </td>
 
                             @else
@@ -56,8 +56,7 @@
                             <h5 class="card-title">{{ $activityFalse->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text"></p>
-                            <a href="" class="card-link">Fazer
-                                atividade</a>
+                            <a href="{{ route('studentActivityResponse.index', $activityFalse->id) }}" class="card-link">Fazer atividade</a>
                         </div>
                     </div>
                 </div>

@@ -25,24 +25,30 @@ class ActivityResponseController extends Controller
         return view('activityResponse.index', compact('activitiesResponses'));
     }
 
-    public function showActivityResponse($id) {
+    public function showActivityResponse($id)
+    {
         $activityResponse = ActivityResponse::find($id);
         return view('activityResponse.show', compact('activityResponse'));
     }
 
-    public function studentActivitiesResponses($id) {
-        $user = Auth::user();
-        $activity = Activity::find($id);    
-        return view('students.activities.responseActivity', compact('activity', 'user'));
+    public function studentActivitiesResponses($id)
+    {
+        $activity = Activity::find($id);
+        if ($activity) {
+            $user = Auth::user();
+            return view('students.activities.responseActivity', compact('activity', 'user'));
+        }
+        return back()->with('erros', 'Não foi possível encontrara atividade');
     }
-    
+
     //for the teacher to correct the activity 
-    public function storeActivityResponse(ActivityResponseFormRequest $request, $id) {
+    public function storeActivityResponse(ActivityResponseFormRequest $request, $id)
+    {
         $activityResponseStudent = ActivityResponse::find($id);
-        if($request->check == null) {
+        if ($request->check == null) {
             $activityResponseStudent->update([
                 'note' => $request->note,
-                'check'=> false
+                'check' => false
             ]);
 
             return redirect()->route('responseacty.index', $activityResponseStudent->activity_id);
@@ -50,13 +56,14 @@ class ActivityResponseController extends Controller
 
         $activityResponseStudent->update([
             'note' => $request->note,
-            'check'=> true
+            'check' => true
         ]);
         return redirect()->route('responseacty.index', $activityResponseStudent->activity_id);
     }
 
     //Student's answer
-    public function studentActivitiesReponsesStore( ActivityResponseStudentFormRequest $request) {
+    public function studentActivitiesReponsesStore(ActivityResponseStudentFormRequest $request)
+    {
 
         if ($request->filesActivities) {
             $path = $request->file('filesActivities')->store('filesActivities');
@@ -79,5 +86,15 @@ class ActivityResponseController extends Controller
             'description' => $request->editor
         ]);
         return redirect()->route('activity.index')->with('success', 'Atividade respondida com sucesso!');
+    }
+
+    public function studentRedoAcitivity($id)
+    {
+        $activityResponse = ActivityResponse::find($id);
+        if ($activityResponse->check == false) {
+            return view('students.activities.redoActivity', compact('activityResponse'));
+        }
+        
+        return back()->with('erros', 'Você não pode refazer essa atividade!');
     }
 }
