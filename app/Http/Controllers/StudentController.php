@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
-    public function index() {
+    public function index() //see all the students in the system
+    {
 
         if (Auth::check()) {
 
@@ -110,9 +111,4 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'Professor excluido com sucesso!');
 
     }
-
-    public function studentResponseActivityIndex($id) {
-        $activity = Activity::find($id);
-        dd($activity);
-    }   
 }
