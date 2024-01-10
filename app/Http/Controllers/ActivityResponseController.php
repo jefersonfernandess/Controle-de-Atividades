@@ -8,11 +8,10 @@ use App\Models\Activity;
 use App\Models\ActivityResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ActivityResponseController extends Controller
 {
-    public function indexActivityResponses($id)
+    public function indexActivityResponses($id) //returns view for teachers to see the answers to the specific activity
     {
         $activity = Activity::find($id);
 
@@ -25,13 +24,13 @@ class ActivityResponseController extends Controller
         return view('activityResponse.index', compact('activitiesResponses'));
     }
 
-    public function showActivityResponse($id)
+    public function showActivityResponse($id) //return only one activity response
     {
         $activityResponse = ActivityResponse::find($id);
         return view('activityResponse.show', compact('activityResponse'));
     }
 
-    public function studentActivitiesResponses($id)
+    public function studentActivitiesResponses($id) //returns the student's answered activity view
     {
         $activity = Activity::find($id);
         if ($activity) {
@@ -41,8 +40,8 @@ class ActivityResponseController extends Controller
         return back()->with('erros', 'Não foi possível encontrara atividade');
     }
 
-    //for the teacher to correct the activity 
-    public function storeActivityResponse(ActivityResponseFormRequest $request, $id)
+    
+    public function storeActivityResponse(ActivityResponseFormRequest $request, $id) //for the teacher to correct the activity 
     {
         $activityResponseStudent = ActivityResponse::find($id);
         if ($request->check == null) {
@@ -61,8 +60,7 @@ class ActivityResponseController extends Controller
         return redirect()->route('responseacty.index', $activityResponseStudent->activity_id);
     }
 
-    //Student's answer
-    public function studentActivitiesReponsesStore(ActivityResponseStudentFormRequest $request)
+    public function studentActivitiesReponsesStore(ActivityResponseStudentFormRequest $request) //the student's answered activity store
     {
 
         if ($request->filesActivities) {
@@ -88,7 +86,7 @@ class ActivityResponseController extends Controller
         return redirect()->route('activity.index')->with('success', 'Atividade respondida com sucesso!');
     }
 
-    public function studentRedoAcitivityEdit($id)
+    public function studentRedoAcitivityEdit($id) //returns the view to redo the activity
     {
         $activityResponse = ActivityResponse::find($id);
         if ($activityResponse->check == false) {
@@ -100,7 +98,7 @@ class ActivityResponseController extends Controller
         return back()->with('erros', 'Você não pode refazer essa atividade!');
     }
 
-    public function studentRedoAcitivityUpdate(Request $request, $id)
+    public function studentRedoAcitivityUpdate(Request $request, $id) //store to redo the activity
     {
         $activityResponse = ActivityResponse::find($id);
         if (isset($activityResponse)) {
