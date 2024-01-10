@@ -70,46 +70,20 @@
     }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Respostas</a>
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navbar')
     <div class="main-content">
-        <form class="content" action="" method="POST" enctype="multipart/form-data">
+        <form class="content" action="{{ route('studentRedoActivity.update', $activityResponse->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="row mt-2">
                 <div class="col text-center">
                     <h2>Refazer atividade</h2>
                 </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col d-flex flex-column text-center data-response">
-                    <input class="text-center" type="text" name="user" value="" hidden>
-                    <input class="text-center" type="text" name="activity_id" value="" hidden>
-                </div>
-            </div>
+            </div>  
             <div class="row mt-4">
                 <div class="col d-flex justify-content-center text-center">
                     <div class="proposed-activity">
-                        <p><b>Sua resposta</b></p>
+                        <p><b>Sua resposta atual</b></p>
                         <div>
                             {!! $activityResponse->description !!}
                         </div>
@@ -120,8 +94,8 @@
                 <div class="col">
                     <div class="d-flex justify-content-center aling-center">
                         <div class="text-center activity-response keditor">
-                            <label class="text-center" for="editor">Nova resposta</label>
-                            <textarea name="editor" id="editor" rows="5" cols="33"></textarea>
+                            <label class="text-center" for="response">Nova resposta</label>
+                            <textarea name="response" id="editor" rows="5" cols="33"></textarea>
                         </div>
                     </div>
                 </div>

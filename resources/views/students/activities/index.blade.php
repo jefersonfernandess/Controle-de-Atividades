@@ -31,14 +31,19 @@
                         <td>{!! $activityTrue->description !!}</td>
                         @foreach ($activityTrue->ActivityResponse as $activityResponse)
                             @if ($activityResponse->check == false)
-                                <td><i>Esperando correção</i></td>
+                                <td><i>Esperando correção (<a href="" class="link-info" data-bs-toggle="modal"
+                                            data-bs-target="#responseActivity-{{ $activityResponse->id }}">ver sua
+                                            resposta</a>)</i></td>
+                                @include('students.activities.modal.responseActivity')
                                 <td>
-                                    <a href="{{ route('studentRedoActivity.edit', $activityResponse->id) }}" class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Refazer</a>
+                                    <a href="{{ route('studentRedoActivity.edit', $activityResponse->id) }}"
+                                        class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                        Refazer</a>
                                 </td>
-
                             @else
-                            <td>{{ $activityResponse->note }}</td>
-                            <td><i>Corrigida</i></td>                                
+                                <td>{{ $activityResponse->note }} </i></td>
+                                <td><i>Corrigida <br>(<a href="" class="link-success" data-bs-toggle="modal"data-bs-target="#responseActivity-{{ $activityResponse->id }}">ver resposta</a>)</i></td>
+                                @include('students.activities.modal.responseActivity')
                             @endif
                         @endforeach
                     </tr>
@@ -56,7 +61,8 @@
                             <h5 class="card-title">{{ $activityFalse->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text"></p>
-                            <a href="{{ route('studentActivityResponse.index', $activityFalse->id) }}" class="card-link">Fazer atividade</a>
+                            <a href="{{ route('studentActivityResponse.index', $activityFalse->id) }}"
+                                class="card-link">Fazer atividade</a>
                         </div>
                     </div>
                 </div>

@@ -92,13 +92,35 @@ class ActivityResponseController extends Controller
     {
         $activityResponse = ActivityResponse::find($id);
         if ($activityResponse->check == false) {
-            return view('students.activities.redoActivity', compact('activityResponse'));
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            return view('students.activities.redoActivity', compact('activityResponse', 'userAuth', 'roleUser'));
         }
 
         return back()->with('erros', 'Você não pode refazer essa atividade!');
     }
 
-    public function studentRedoAcitivityUpdate() {
-
+    public function studentRedoAcitivityUpdate(Request $request, $id)
+    {
+        $activityResponse = ActivityResponse::find($id);
+        if (isset($activityResponse)) {
+            if ($request->filesActivities) {
+                $path = $request->file('filesActivities')->store('filesActivities');
+                $activityResponse->update([
+                    'check' => false,
+                    'note' => null,
+                    'filepath' => $path,
+                    'description' => $request->response
+                ]);
+                return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
+            }
+            $activityResponse->update([
+                'check' => false,
+                'note' => null,
+                'description' => $request->response
+            ]);
+            return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
+        }
+        return back()->with('erros', 'Não foi possível refazer essa ativade, tenten novamente!');
     }
 }

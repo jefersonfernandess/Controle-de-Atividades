@@ -135,11 +135,15 @@ class ActivityController extends Controller
         if(Auth::user()) {
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
+
             $activityResponseTrue = Activity::with(['ActivityResponse' => function ($query) use ($userAuth) {
                 $query->where('user_id', $userAuth->id);
             }])->whereRelation('ActivityResponse', 'user_id', $userAuth->id)->get();
+            //dd($activityResponseTrue);
+
             $activitiesResponseId = $activityResponseTrue->pluck('id');
             $activityResponseFalse = Activity::with('ActivityResponse')->whereNotIn('id', $activitiesResponseId)->get();
+
             return view('students.activities.index', compact('activityResponseTrue', 'activityResponseFalse', 'userAuth', 'roleUser'));
         }
         dd('deu erro');
