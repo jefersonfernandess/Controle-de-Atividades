@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titulo', 'Teacher - Todos')
+@section('titulo', 'Professores - Todos')
 <style>
     .border-none {
         border: none !important;
