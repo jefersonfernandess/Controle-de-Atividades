@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class ActivityController extends Controller
 {
 
-    public function index()
+    public function index() //returns view of all activities 
     {
         if (Auth::check()) {
 
@@ -29,13 +29,13 @@ class ActivityController extends Controller
         return view('activity.index', compact('users', 'activities'));
     }
 
-    public function create()
+    public function create() //returns view to create a new activity 
     {
         $diciplines = Dicipline::get();
         return view('activity.create', compact('diciplines'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //create a new activity
     {
         $user = Auth::user();
         if ($request->filesActivities) {
@@ -47,7 +47,6 @@ class ActivityController extends Controller
                 'filepath' => $path,
                 'description' => $request->editor
             ]);
-
             return redirect()->route('site.index')->with('success', 'Atividade criada com sucesso!');
         }
         Activity::create([
@@ -59,20 +58,20 @@ class ActivityController extends Controller
         return redirect()->route('site.index')->with('success', 'Atividade criada com sucesso!');
     }
 
-    public function show($id)
+    public function show($id) //show the activity 
     {
         $activity = Activity::find($id);
         return view('activity.show', compact('activity'));
     }
 
-    public function edit($id)
+    public function edit($id) //edit the activity
     {
         $activity = Activity::find($id);
         $diciplines = Dicipline::get();
         return view('activity.edit', compact('activity', 'diciplines'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //update the activity
     {
         $activity = Activity::find($id);
 
@@ -107,7 +106,7 @@ class ActivityController extends Controller
         return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
     }
 
-    public function destroy($id)
+    public function destroy($id) //delete the activity
     {
         $activity = Activity::find($id);
 
@@ -120,7 +119,7 @@ class ActivityController extends Controller
         return redirect()->back()->with('success', 'Atividade atualizada com sucesso!');
     }
 
-    public function indexTeacherActivities()
+    public function indexTeacherActivities() //returns view for teachers to see their activities
     {
         if (Auth::user()) {
             $userAuth = Auth::user();
@@ -131,7 +130,8 @@ class ActivityController extends Controller
         return back()->with('erros', 'Não foi possível acessar as suas atividades!');
     }
 
-    public function indexStudentActivities() {
+    public function indexStudentActivities() //returns view for students to see their activities
+    { 
         if(Auth::user()) {
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
@@ -148,21 +148,5 @@ class ActivityController extends Controller
         }
         dd('deu erro');
         return back()->with('erros', 'Não foi possível acessar as suas atividades!');
-    }
-
-    public function studentActivitiesIndex()
-    {
-        if (!Auth::check()) {
-            $users = false;
-            return view('/');
-        }
-
-        $user = Auth::user();
-       
-        
-
-        // // $activitiesStudentes = Activity::with('ActivityResponse')->whereRelation('ActivityResponse', 'user_id', $user->id)->get();
-        $activities = Activity::get();
-        return view('students.activities.index', compact('user', 'activitiesStudentes', 'activities'));
     }
 }
