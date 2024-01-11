@@ -88,31 +88,6 @@
     }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                aria-controls="offcanvasExample">
-                <i class="fa fa-bars" aria-hidden="true"></i> Menu
-            </a>
-
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <a href="/">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Home</h5>
-                    </a>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div class="d-flex flex-column">
-                        <a href="{{ route('activity.index') }}">Atividades</a>
-                        <a href="{{ route('activity.create') }}">Criar atividade</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
     <main class="main">
         <div class="container">
             <table class="table">

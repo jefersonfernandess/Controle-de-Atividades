@@ -14,6 +14,20 @@
 @section('content')
     @include('layouts.navbar')
     <div class="container mt-4">
+        @if (session('success'))
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center ">
+                    <p class="alert alert-success">{{ session('success') }}</p>
+                </div>
+            </div>
+        @endif
+        @if (session('errors'))
+            <div class="row">
+                <div class="col d-flex justify-content-center ">
+                    <p class="alert alert-danger">{{ session('errors') }}</p>
+                </div>
+            </div>
+        @endif
         <div class="row">
             @foreach ($users as $user)
                 <div class="col-3 mb-4">

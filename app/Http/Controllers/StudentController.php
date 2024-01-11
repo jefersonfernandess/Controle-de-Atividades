@@ -100,8 +100,8 @@ class StudentController extends Controller
     public function unlinkStudent($id) //UNLINK teacher from role teacher
     { 
         $user = User::find($id);
-        if(!isset($user)) {
-            return redirect()->route('student.index')->with('erros', 'Não foi possível apagar essa conta!');
+        if(!$user) {
+            return redirect()->route('site.index')->with('erros', 'Professor não encontrado!');
         }
 
         $userId = $user->id;

@@ -109,8 +109,8 @@ class ActivityController extends Controller
     public function destroy($id) //delete the activity
     {
         $activity = Activity::find($id);
-
-        if (!isset($activity)) {
+        dd(!Activity::find($id));
+        if (!Activity::find($id)) {
             return redirect()->back()->with('errors', 'Não foi possível excluir a atividade!');
         }
 
