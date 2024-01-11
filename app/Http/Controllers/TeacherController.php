@@ -58,7 +58,7 @@ class TeacherController extends Controller
         $teacherRole = UserRole::where('user_id', $userId)->first();
         $teacherRole->update(['role_id' => 3]);
 
-        return redirect()->route('site.index');
+        return redirect()->route('teacher.index');
     }
 
     public function storeTeacher(RegisterTeacherFormRequest $request) //CREATE new teacher account
@@ -77,7 +77,7 @@ class TeacherController extends Controller
                 ]);
             }
 
-            return redirect()->route('site.index');
+            return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
         }
     }
 
@@ -85,7 +85,7 @@ class TeacherController extends Controller
     {
         $user = User::find($id);
         if(!isset($user)) {
-            return redirect()->route('teacher.index')->with('erros', 'Não foi possível atualizar.');
+            return redirect()->route('teacher.index')->with('errors', 'Não foi possível atualizar.');
         };
 
         $user->update([
@@ -98,23 +98,27 @@ class TeacherController extends Controller
     public function unlinkTeacher($id) //UNLINK teacher from role teacher
     { 
         $user = User::find($id);
-        if(!isset($user)) {
-            return redirect()->route('teacher.index')->with('erros', 'Não foi possível apagar essa conta!');
+        $userRole = UserRole::where('user_id', $user->id)->first();
+
+        if($user && $userRole->role_id == 1) {
+            return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular essa conta!');
         }
 
         $userId = $user->id;
         $teacherRole = UserRole::where('user_id', $userId)->first();
         $teacherRole->update(['role_id' => 1]);
 
-        return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');
+        return redirect()->route('teacher.index')->with('success', 'Conta desvinculada com sucesso!');
 
     }
 
     public function destroyTeacher($id) //DELETE teacher from role teacher
     {
         $user = User::find($id);
-        if(!$user) {
-            return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar essa conta!');
+        $userRole = UserRole::where('user_id', $user->id)->first();
+
+        if(!$user && $userRole->role_id == 1) {
+            return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
         }
 
         $user->delete();
