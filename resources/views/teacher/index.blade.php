@@ -13,21 +13,13 @@
 </style>
 @section('content')
     @include('layouts.navbar')
+    @if (session('success'))
+        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
+    @endif
+    @if (session('errors'))
+        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
+    @endif
     <div class="container mt-4">
-        @if (session('success'))
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center ">
-                    <p class="alert alert-success">{{ session('success') }}</p>
-                </div>
-            </div>
-        @endif
-        @if (session('errors'))
-            <div class="row">
-                <div class="col d-flex justify-content-center ">
-                    <p class="alert alert-danger">{{ session('errors') }}</p>
-                </div>
-            </div>
-        @endif
         <div class="row">
             @foreach ($users as $user)
                 <div class="col-3 mb-4">

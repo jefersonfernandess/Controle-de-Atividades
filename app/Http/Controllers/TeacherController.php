@@ -115,13 +115,14 @@ class TeacherController extends Controller
     public function destroyTeacher($id) //DELETE teacher from role teacher
     {
         $user = User::find($id);
-        $userRole = UserRole::where('user_id', $user->id)->first();
-
-        if(!$user && $userRole->role_id == 1) {
-            return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
+        if($user) {
+            $userRole = UserRole::where('user_id', $user->id)->first();
+            if($userRole->role_id == 1) {
+                return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
+            }
+            $user->delete();
+            return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');   
         }
-
-        $user->delete();
-        return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');   
+        return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
     }
 }
