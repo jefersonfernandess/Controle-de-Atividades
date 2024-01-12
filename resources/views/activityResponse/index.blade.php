@@ -21,7 +21,7 @@
             <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
         @endif
         <table class="table table-bordered">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">Nome do aluno</th>
                     <th scope="col">Nota</th>
