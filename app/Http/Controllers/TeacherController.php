@@ -75,16 +75,17 @@ class TeacherController extends Controller
                     'user_id' => $user->id,
                     'role_id' => 3
                 ]);
+                return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
             }
-
             return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
         }
+        return redirect()->route('teacher.index')->with('errors', 'Professor não foi encontrado!');
     }
 
     public function updateTeacher(Request $request, $id)  //UPDATE data teacher 
     {
         $user = User::find($id);
-        if(!isset($user)) {
+        if(!$user) {
             return redirect()->route('teacher.index')->with('errors', 'Não foi possível atualizar.');
         };
 
@@ -98,18 +99,16 @@ class TeacherController extends Controller
     public function unlinkTeacher($id) //UNLINK teacher from role teacher
     { 
         $user = User::find($id);
-        $userRole = UserRole::where('user_id', $user->id)->first();
-
-        if($user && $userRole->role_id == 1) {
-            return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular essa conta!');
+        if($user) {
+            $userRole = UserRole::where('user_id', $user->id)->first();
+            if($userRole->role_id == 1) {
+                return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular essa conta!');
+            }
+            $teacherRole = UserRole::where('user_id', $user->id)->first();
+            $teacherRole->update(['role_id' => 1]);
+            return redirect()->route('teacher.index')->with('success', 'Conta desvinculada com sucesso!');
         }
-
-        $userId = $user->id;
-        $teacherRole = UserRole::where('user_id', $userId)->first();
-        $teacherRole->update(['role_id' => 1]);
-
-        return redirect()->route('teacher.index')->with('success', 'Conta desvinculada com sucesso!');
-
+        return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular esse professor(a)!');
     }
 
     public function destroyTeacher($id) //DELETE teacher from role teacher

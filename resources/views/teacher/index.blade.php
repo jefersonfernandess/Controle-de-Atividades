@@ -21,44 +21,41 @@
     @endif
     <div class="container mt-4">
         <div class="row">
-            @foreach ($users as $user)
-                <div class="col-3 mb-4">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fa fa-user" aria-hidden="true"></i>
-                                {{ $user->name }}</h5>
-                            <p class="card-text"><i class="fa fa-envelope" aria-hidden="true"></i>
-                                {{ $user->email }}</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="fa fa-book" aria-hidden="true"></i>
-                                Diciplina</li>
-                            <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                Atividades</li>
-                            <li class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i>
-                                Turma</li>
-                        </ul>
-                        <div class="card-body d-flex justify-content-center align-center gap-3">
-                            <!--Editar-->
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#updateModal-{{ $user->id }}"><i class="fa fa-pencil-square-o"
-                                    aria-hidden="true"></i>
-                                Editar
-                            </button>
-                            @include('teacher.modal.updateTeacher')
-                            <!--Fim Editar-->
-                            <!--Apagar-->
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-trash"
-                                    aria-hidden="true"></i>
-                                Apagar
-                            </button>
-                            @include('teacher.modal.deleteTeacher')
-                            <!--Fim Apagar-->
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome do professor</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td> {{ $user->name }} </td>
+                            <td> {{ $user->email }}</td>
+                            <td class="d-flex gap-2">
+                                <div>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal-{{ $user->id }}"><i class="fa fa-pencil-square-o"
+                                            aria-hidden="true"></i>
+                                        Editar
+                                    </button>
+                                    @include('teacher.modal.updateTeacher')
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal-{{ $user->id }}"><i class="fa fa-trash"
+                                            aria-hidden="true"></i>
+                                        Apagar
+                                    </button>
+                                    @include('teacher.modal.deleteTeacher')
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
