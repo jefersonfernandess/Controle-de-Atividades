@@ -12,29 +12,14 @@
     }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Respostas</a>
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navbar')
     <div class="container mt-4">
+        @if (session('success'))
+            <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
+        @endif
+        @if (session('errors'))
+            <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
+        @endif
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -52,14 +37,16 @@
                         @if ($activityResponse->check == true)
                             <td><i>Corrigida</i></td>
                             <td>
-                                <a href="{{ route('responseacty.show', $activityResponse->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"
-                                        aria-hidden="true"></i> Editar</a>
+                                <a href="{{ route('responseacty.show', $activityResponse->id) }}"
+                                    class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Editar</a>
                             </td>
                         @else
                             <td><i>Esperando correção</i></td>
                             <td>
-                                <a href="{{ route('responseacty.show', $activityResponse->id) }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"
-                                        aria-hidden="true"></i> Corrigir</a>
+                                <a href="{{ route('responseacty.show', $activityResponse->id) }}"
+                                    class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                    Corrigir</a>
                             </td>
                         @endif
                     </tr>

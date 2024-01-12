@@ -13,15 +13,17 @@ class ActivityResponseController extends Controller
 {
     public function indexActivityResponses($id) //returns view for teachers to see the answers to the specific activity
     {
+
         $activity = Activity::find($id);
-
-        if (isset($activity)) {
+        if ($activity) {
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
             $activitiesResponses = ActivityResponse::where('activity_id', $activity->id)->get();
-            return view('activityResponse.index', compact('activitiesResponses'));
+            return view('activityResponse.index', compact('activitiesResponses', 'userAuth', 'roleUser'));
         }
-
         $activitiesResponses = false;
-        return view('activityResponse.index', compact('activitiesResponses'));
+        $userAuth = false;
+        return view('activityResponse.index', compact('activitiesResponses', 'userAuth'));
     }
 
     public function showActivityResponse($id) //return only one activity response

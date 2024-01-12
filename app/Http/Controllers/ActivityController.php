@@ -17,16 +17,14 @@ class ActivityController extends Controller
     public function index() //returns view of all activities 
     {
         if (Auth::check()) {
-
-            $userRole = UserRole::where('role_id', 3)->get()->pluck('user_id');
-            $users = User::whereIn('id', $userRole)->orderBy('name', 'ASC')->get();
-
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
             $activities = Activity::get();
-            return view('activity.index', compact('users', 'activities'));
+            return view('activity.index', compact('activities', 'userAuth', 'roleUser'));
         }
 
-        $users = false;
-        return view('activity.index', compact('users', 'activities'));
+        $userAuth = false;
+        return view('activity.index', compact('activities', 'userAuth'));
     }
 
     public function create() //returns view to create a new activity 
@@ -75,14 +73,13 @@ class ActivityController extends Controller
     {
         $activity = Activity::find($id);
 
-        if (!isset($activity)) {
-            return redirect()->back()->with('errors', 'Não foi possível atualizar a atividade!');
+        if (!$activity) {
+            return redirect()->back()->with('errors', 'Atividade não encontrada!');
         }
 
         $user = Auth::user();
 
         if ($request->hasFile('filesActivities')) {
-
             Storage::disk('public')->delete('storage/' . $activity->filepath);
             $newfilepath = $request->file('filesActivities')->store('filesActivities');
             $activity->update([
@@ -94,7 +91,6 @@ class ActivityController extends Controller
             ]);
             return redirect()->route('activity.index')->with('success', 'Atividade atualizada com sucesso!');
         }
-
         Storage::disk('public')->delete('storage/' . $activity->filepath);
         $activity->update([
             'user_id' => $user->id,
@@ -109,14 +105,12 @@ class ActivityController extends Controller
     public function destroy($id) //delete the activity
     {
         $activity = Activity::find($id);
-        dd(!Activity::find($id));
-        if (!Activity::find($id)) {
-            return redirect()->back()->with('errors', 'Não foi possível excluir a atividade!');
+        if ($activity) {
+            Storage::delete('storage/' . $activity->filepath);
+            $activity->delete();
+            return redirect()->back()->with('success', 'Atividade excluida com sucesso!');
         }
-
-        Storage::delete('storage/' . $activity->filepath);
-        $activity->delete();
-        return redirect()->back()->with('success', 'Atividade atualizada com sucesso!');
+        return redirect()->back()->with('errors', 'Não foi possível excluir, atividade não encontrada!');
     }
 
     public function indexTeacherActivities() //returns view for teachers to see their activities
@@ -131,8 +125,8 @@ class ActivityController extends Controller
     }
 
     public function indexStudentActivities() //returns view for students to see their activities
-    { 
-        if(Auth::user()) {
+    {
+        if (Auth::user()) {
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
 
