@@ -13,6 +13,13 @@
 </style>
 @section('content')
     @include('layouts.navbar')
+    @if (session('success'))
+        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
+    @endif
+    @if (session('errors'))
+        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
+    @endif
+    <h1 class="text-center mt-2">Alunos</h1>
     <div class="container mt-4">
         <div class="row">
             @foreach ($users as $user)
