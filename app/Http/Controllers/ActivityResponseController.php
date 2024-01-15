@@ -37,7 +37,9 @@ class ActivityResponseController extends Controller
         $activity = Activity::find($id);
         if ($activity) {
             $user = Auth::user();
-            return view('students.activities.responseActivity', compact('activity', 'user'));
+            $userAuth = Auth::user();
+            $roleUser = $userAuth->UserRole;
+            return view('students.activities.responseActivity', compact('activity', 'user', 'userAuth', 'roleUser'));
         }
         return back()->with('erros', 'Não foi possível encontrara atividade');
     }
@@ -85,7 +87,7 @@ class ActivityResponseController extends Controller
             'note' => null,
             'description' => $request->editor
         ]);
-        return redirect()->route('activity.index')->with('success', 'Atividade respondida com sucesso!');
+        return redirect()->route('activitiesStudent.index')->with('success', 'Atividade respondida com sucesso!');
     }
 
     public function studentRedoAcitivityEdit($id) //returns the view to redo the activity

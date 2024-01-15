@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActivityStoreFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 use App\Models\Dicipline;
@@ -33,8 +34,8 @@ class ActivityController extends Controller
         return view('activity.create', compact('diciplines'));
     }
 
-    public function store(Request $request) //create a new activity
-    {
+    public function store(ActivityStoreFormRequest $request) //create a new activity
+    {  
         $user = Auth::user();
         if ($request->filesActivities) {
             $path = $request->file('filesActivities')->store('filesActivities');

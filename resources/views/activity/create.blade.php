@@ -44,7 +44,8 @@
         font-size: 1.2rem;
     }
 
-    .form-content label {
+    .form-content label,
+    li {
         font-family: 'Montserrat', sans-serif;
     }
 </style>
@@ -87,10 +88,23 @@
                             <label class="text-center" for="editor"><b>Descrição da atividade</b></label>
                             <textarea name="editor" id="editor"></textarea>
                         </div>
+                        <div>
+                            @if (count($errors) > 0)
+                                <div class="row mt-5">
+                                    <div class="col d-flex justify-content-center flex-column">
+                                        <ul>
+
+                                            @foreach ($errors->all() as $error)
+                                                <li>{!! $error !!}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-
-                <div class="row mt-4">
+                <div class="row mt-2">
                     <button class="btn" style="background-color: #fb8351;" type="submit">Criar atividade</button>
                 </div>
             </form>
