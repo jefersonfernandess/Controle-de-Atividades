@@ -77,34 +77,13 @@
     }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('diciplines.index') }}">Diciplinas</a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Button create modal -->
-                        <button type="button" class="nav-link active border-none" data-bs-toggle="modal"
-                            data-bs-target="#createDiciplines">
-                            Nova Diciplina
-                        </button>
-                        @include('diciplines.modal.createDiciplines')
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navbar')
+    @if (session('success'))
+        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
+    @endif
+    @if (session('errors'))
+        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
+    @endif
     <div class="container">
         <div class="row mt-2">
             @foreach ($diciplines as $dicipline)
@@ -113,8 +92,6 @@
                         <h2 class="text-center mt-2">{{ $dicipline->name }}</h2>
                         <div class="card-body">
                             <div class="opcoes d-flex justify-content-center aling-center gap-1">
-                                <a href="#" class="btn btn-success">Vizualizar</a>
-                                <!-- Button edit modal -->
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#editDiciplines-{{ $dicipline->id }}">
                                     Editar

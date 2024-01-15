@@ -67,13 +67,17 @@ Route::controller(SiteController::class)->group(function () {
             Route::get('/atividades/editar-atividade/{atividade}', 'edit')->name('activity.edit');
             Route::put('/atividades/atualizando-atividade/{atividade}', 'update')->name('activity.update');
             Route::delete('/atividades/apagando-atividade/{atividade}', 'destroy')->name('activity.destroy');
-            Route::get('/atividades/professor/suas-atividades/','indexTeacherActivities')->name('activitiesTeacher.index');
+            Route::get('/atividades/professor/suas-atividades/', 'indexTeacherActivities')->name('activitiesTeacher.index');
         });
         //ActivityResponse controller routes (INDEX, SHOW, STORE)
         Route::controller(ActivityResponseController::class)->group(function () {
             Route::get('/respostas-atividade/{atividade}', 'indexActivityResponses')->name('responseacty.index');
             Route::get('/resposta-atividade/{atividade}', 'showActivityResponse')->name('responseacty.show');
             Route::post('/resposta-atividade/corrigir/{atividade}/', 'storeActivityResponse')->name('responseacty.store');
+        });
+
+        Route::controller(ActivityController::class)->group(function () {
+            Route::get('/atividades/', 'index')->name('activity.index');
         });
     });
 
@@ -87,10 +91,6 @@ Route::controller(SiteController::class)->group(function () {
             Route::post('/atividade/responder/salvando/', 'studentActivitiesReponsesStore')->name('studentActivityReponse.store');
             Route::get('/atividade/refazer/{atividade}', 'studentRedoAcitivityEdit')->name('studentRedoActivity.edit');
             Route::put('/atividade/refazer/{atividae}/atualizando/', 'studentRedoAcitivityUpdate')->name('studentRedoActivity.update');
-        });
-
-        Route::controller(ActivityController::class)->group(function () {
-            Route::get('/atividades/', 'index')->name('activity.index');
         });
     });
 });

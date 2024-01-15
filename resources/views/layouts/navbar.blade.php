@@ -47,9 +47,7 @@
                                         </p>
                                         <div class="collapse" id="collapseExample">
                                             <div class="card card-body">
-                                                Some placeholder content for the collapse component. This panel is
-                                                hidden by
-                                                default but revealed when the user activates the relevant trigger.
+                                                
                                             </div>
                                         </div>
                                         <li class="nav-item">
@@ -115,7 +113,7 @@
                                             <a class="nav-link active" data-bs-toggle="collapse" href="#diciplines"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fa-solid fa-book-open fa-sm" style="color: #000000;"></i>
-                                                Diciplinas <i class="fa-solid fa-chevron-down fa-xs"
+                                                Disciplinas <i class="fa-solid fa-chevron-down fa-xs"
                                                     style="color: #000000;"></i>
                                             </a>
                                             @include('layouts.collapseSideBar.diciplines')
