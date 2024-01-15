@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5>Você quer *EXCLUIR* a diciplina de <i>{{ $dicipline->name }}</i>?</h5>
+                <h5>Você quer *EXCLUIR* a disciplina de <i>{{ $dicipline->name }}</i>?</h5>
                 <div class="container content">
                     <form id="form" class="form-register" action="{{ route('diciplines.destroy', $dicipline->id) }}" method="post">
                         @csrf

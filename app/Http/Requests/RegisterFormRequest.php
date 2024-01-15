@@ -23,7 +23,7 @@ class RegisterFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max:128'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:3']
         ];
     }
@@ -35,6 +35,7 @@ class RegisterFormRequest extends FormRequest
             'name.max' => 'O nome só pode ter no máximo 128 caracteres!',
             'email.required' => 'O email é obrigatório!',
             'email.email' => 'O email precisa ser um email válido!',
+            'email.unique' => 'Esse email já está sendo usado!',
             'password.required' => 'A senha é obrigatório!',
             'password.min' => 'A senha precisa ter no mínimo 3 caracteres',
         ];

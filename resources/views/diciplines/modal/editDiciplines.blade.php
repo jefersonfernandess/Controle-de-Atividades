@@ -14,7 +14,7 @@
                         @method('put')
                         <div class="row">
                             <div class="col d-flex justify-content-center">
-                                <h2>Editar diciplina</h2>
+                                <h2>Editar disciplina</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col d-flex flex-column justify-content-center">
-                                <button class="btn btn-warning" type="submit">Atualizar diciplina</button>
+                                <button class="btn btn-warning" type="submit">Atualizar disciplina</button>
                             </div>
                         </div>
                         @if (session('fail'))
