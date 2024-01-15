@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AcitivityUpdateRequest;
 use App\Http\Requests\ActivityStoreFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 use App\Models\Dicipline;
-use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,7 +71,8 @@ class ActivityController extends Controller
     }
 
     public function update(Request $request, $id) //update the activity
-    {
+    {   
+        dd($request->all());
         $activity = Activity::find($id);
 
         if (!$activity) {

@@ -122,5 +122,16 @@
             .catch(error => {
                 console.error(error);
             });
+
+        CKEDITOR.instances.editor.on('key', function(evt) {
+            var text = evt.editor.getData();
+            var maxLength = 128; // Defina o número máximo de caracteres permitidos
+
+            if (text.length > maxLength) {
+                // Trunca o texto para o comprimento máximo
+                var truncatedText = text.substring(0, maxLength);
+                evt.editor.setData(truncatedText);
+            }
+        });
     </script>
 @endsection

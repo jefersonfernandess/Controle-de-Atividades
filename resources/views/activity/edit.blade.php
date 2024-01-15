@@ -3,10 +3,12 @@
 @section('titulo', 'Criar atividade - Atividade')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+
     body {
         //background-image: linear-gradient(to bottom, #f0a818, #f3ba39, #f6cb54, #fadb6f, #ffeb89);
         background-image: linear-gradient(to top, #fb8351, #fc8b53, #fd9356, #fd9b5a, #fea35e, #fdac69, #fbb474, #fabc80, #f6c696, #f2d0ac, #eed9c3, #e9e2da);
     }
+
     .container {
         display: flex;
         justify-content: center;
@@ -45,12 +47,12 @@
     .form-content label {
         font-family: 'Montserrat', sans-serif;
     }
-
 </style>
 @section('content')
     <div class="container">
         <div class="content">
-            <form class="form-content" action="{{ route('activity.update', $activity->id) }}" method="post" enctype="multipart/form-data">
+            <form class="form-content" action="{{ route('activity.update', $activity->id) }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="row">
@@ -78,12 +80,13 @@
                             <select name="dicipline" id="dicipline" class="js-user-option">
                                 @foreach ($diciplines as $dicipline)
                                     @if ($dicipline->id == $activity->dicipline_id)
-                                        <option selected value="{{ $activity->dicipline_id }}">{{ $dicipline->name }}</option>
+                                        <option selected value="{{ $activity->dicipline_id }}">{{ $dicipline->name }}
+                                        </option>
                                     @else
                                         <option value="{{ $dicipline->id }}">{{ $dicipline->name }}</option>
                                     @endif
                                 @endforeach
-                            </select>   
+                            </select>
                         </div>
                         <div class="d-flex flex-column">
                             <label class="text-center" for="file">Anexar arquivos da atividade</label>
