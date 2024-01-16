@@ -32,14 +32,22 @@ class TeacherController extends Controller
 
     public function createWithRole() //Redirect view CREATE TEACHER WITH ROLE
     {
+        //Sidebar dependences
+        $userAuth = Auth::user();
+        $roleUser = $userAuth->UserRole;
+
         $userRole = UserRole::where('role_id', 1)->get()->pluck('user_id');
         $users = User::whereIn('id', $userRole)->get();
-        return view('teacher.createWithRole', compact('users'));
+        return view('teacher.createWithRole', compact('users', 'userAuth', 'roleUser'));
     }
 
     public function createNoRole() //Redirect view CREATE TEACHER NO ROLE
     {
-        return view('teacher.createNoRole');
+        //Sidebar dependences
+        $userAuth = Auth::user();
+        $roleUser = $userAuth->UserRole;
+
+        return view('teacher.createNoRole', compact('userAuth', 'roleUser'));
     }
 
     public function updateRole(Request $request) //Upadate in ROLE

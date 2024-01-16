@@ -13,7 +13,7 @@ class RegisterTeacherFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max:128'],
-            'email' => ['required', 'email', 'unique:user'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:3']
         ];
     }

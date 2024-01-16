@@ -9,7 +9,7 @@
         font-family: 'Roboto', sans-serif;
     */
 
-    body {
+    .img {
         background-image: url(" {{ asset('img/bg4.jpg') }}");
         background-size: cover;
         background-repeat: no-repeat;
@@ -20,8 +20,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin: 10 auto;
-        height: 90%;
+        margin: 0 auto;
+        height: 100%;
     }
 
     .form-register {
@@ -30,6 +30,7 @@
         border: 1px solid black;
         border-radius: 1rem;
     }
+
     .form-register label {
         font-size: 0.8rem;
     }
@@ -55,53 +56,55 @@
     .errorMessage {
         color: red;
     }
-
 </style>
 @section('content')
-    <div class="container content">
-        <form id="form" class="form-register" action="{{ route('teacher.store') }}" method="post">
-            @csrf
-            <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <h2>Registro Professor</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex flex-column justify-content-center">
-                    <input type="text" name="name" id="name" placeholder="Nome" value="{{ old('name') }}">
-                    @error('name')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex flex-column justify-content-center">
-                    <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
-                    @error('email')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex flex-column justify-content-center">
-                    <input type="password" name="password" id="password" placeholder="Senha">
-                    @error('password')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <button class="btn btn-dark" type="submit">Registrar professor</button>
-                </div>
-            </div>
-            @if (session('fail'))
+    @include('layouts.navbar')
+    <div class="img">
+        <div class="container content">
+            <form id="form" class="form-register" action="{{ route('teacher.store') }}" method="post">
+                @csrf
                 <div class="row">
-                    <div class="col d-flex justify-content-center ">
-                        <p class="errorMessage">{{ session('fail') }}</p>
+                    <div class="col d-flex justify-content-center">
+                        <h2>Registro Professor</h2>
                     </div>
                 </div>
-            @endif  
-        </form>
+                <div class="row">
+                    <div class="col d-flex flex-column justify-content-center">
+                        <input type="text" name="name" id="name" placeholder="Nome" value="{{ old('name') }}">
+                        @error('name')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex flex-column justify-content-center">
+                        <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
+                        @error('email')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex flex-column justify-content-center">
+                        <input type="password" name="password" id="password" placeholder="Senha">
+                        @error('password')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-dark" type="submit">Registrar professor</button>
+                    </div>
+                </div>
+                @if (session('fail'))
+                    <div class="row">
+                        <div class="col d-flex justify-content-center ">
+                            <p class="errorMessage">{{ session('fail') }}</p>
+                        </div>
+                    </div>
+                @endif
+            </form>
+        </div>
     </div>
 @endsection
