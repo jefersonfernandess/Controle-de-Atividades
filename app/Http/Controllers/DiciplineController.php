@@ -32,13 +32,13 @@ class DiciplineController extends Controller
         ]);
 
         if(!$validate) {
-            return redirect()->back()->with('error');
+            return redirect()->back()->with('errors', 'Não foi possível criar a disciplina!');
         }
 
         Dicipline::create([
             'name' => $request->name
         ]);
-        return redirect()->route('diciplines.index');
+        return redirect()->route('diciplines.index')->with('success', 'Disciplina criada com sucesso!');
     }
 
     public function update(Request $request, $id) {
@@ -50,19 +50,19 @@ class DiciplineController extends Controller
         ]);
 
         if(!$validate) {
-            return redirect()->back()->with('error');
+            return redirect()->back()->with('errors', 'Não foi possível atualizar a disciplina!');
         }
 
         $dicipline = Dicipline::find($id);
         $dicipline->update($request->all());
-        return redirect()->route('diciplines.index')->with('success');
+        return redirect()->route('diciplines.index')->with('success', 'Disciplina atualizada com sucesso!');
     }
 
     public function destroy($id) {
         $dicipline = Dicipline::find($id);
 
         if(!$dicipline) {
-            return back()->with('error', 'Não foi possível excluir a diciplína!');
+            return back()->with('error', 'Não foi possível excluir a disciplína!');
         }
 
         $dicipline->delete();
