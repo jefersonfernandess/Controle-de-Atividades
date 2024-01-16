@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterStudentFormRequest;
+use App\Http\Requests\UpdateStudentFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 use App\Models\User;
@@ -60,38 +61,34 @@ class StudentController extends Controller
         }
     }
 
-    public function updateRole(Request $request) //Upadate in ROLE TO STUDENT
+    public function updateRole(RegisterStudentFormRequest $request) //Upadate in ROLE TO STUDENT
     {
-        $validate = $request->validate([
-            'userId' => 'required'
-        ], [
-            'userId.required' => 'Você precisa selecionar uma opção!'
-        ]);
-
-        if (!$validate) {
-            return redirect()->route('student.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
+        if ($request) {
+            $userId = $request->userId;
+            $teacherRole = UserRole::where('user_id', $userId)->first();
+            $teacherRole->update(['role_id' => 2]);
+            return redirect()->route('student.index')->with('success', 'Aluno vinculado com sucesso!');
         }
-
-        $userId = $request->userId;
-        $teacherRole = UserRole::where('user_id', $userId)->first();
-        $teacherRole->update(['role_id' => 2]);
-        return redirect()->route('student.index')->with('success', 'Aluno vinculado com sucesso!');
+        return redirect()->route('student.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
     }
 
-    public function updateStudent(Request $request, $id)  //UPDATE data teacher 
+    public function updateStudent(UpdateStudentFormRequest $request, $id)
     {
-        $user = User::find($id);
-        if (!isset($user)) {
-            return redirect()->route('student.index')->with('errors', 'Não foi possível atualizar.');
+        if ($request) {
+            $user = User::find($id);
+            if ($user) {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email
+                ]);
+                return redirect()->route('student.index')->with('success', 'Aluno atualizado com sucesso!');
+            }
+            return redirect()->route('student.index')->with('errors', 'Aluno não foi encontrado!');
         };
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email
-        ]);
-        return redirect()->route('student.index')->with('success', 'Aluno atualizado com sucesso!');
+        return redirect()->route('student.index')->with('errors', 'Não foi possível atualizar.');
     }
-    
-    public function unlinkStudent($id) //UNLINK teacher from role teacher
+
+    public function unlinkStudent($id) //UNLINK student from role teacher
     {
         $user = User::find($id);
         if ($user) {
