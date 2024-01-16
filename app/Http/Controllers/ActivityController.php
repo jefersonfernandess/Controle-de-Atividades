@@ -79,7 +79,6 @@ class ActivityController extends Controller
 
     public function update(ActivityStoreFormRequest $request, $id) //update the activity
     {
-        dd($request->all());
         $activity = Activity::find($id);
 
         if (!$activity) {
