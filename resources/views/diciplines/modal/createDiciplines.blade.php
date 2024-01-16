@@ -17,11 +17,7 @@
                         </div>
                         <div class="row">
                             <div class="col d-flex flex-column justify-content-center">
-                                <input type="text" name="name" id="name" placeholder="Nome da diciplina"
-                                    value="{{ old('name') }}">
-                                @error('name')
-                                    <span>{{ $message }}</span>
-                                @enderror
+                                <input type="text" name="name" id="name" placeholder="Nome da diciplina" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="row">
