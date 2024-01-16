@@ -18,7 +18,7 @@
     @endif
     @if (session('errors'))
         <div class="alert alert-danger">
-            <ul class="container ms-2">
+            <ul class="container d-flex justify-content-center align-items-center gap-5 mt-1">
                 @foreach ($errors->all() as $erro)
                     <li>{{ $erro }}</li>
                 @endforeach
