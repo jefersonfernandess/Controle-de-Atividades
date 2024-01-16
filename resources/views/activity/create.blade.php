@@ -48,6 +48,12 @@
     li {
         font-family: 'Montserrat', sans-serif;
     }
+
+    .ck-editor,
+    .editor,
+    .ck-content {
+        height: 9rem !important;
+    }
 </style>
 @section('content')
     <div class="container">
@@ -65,7 +71,7 @@
                     <div class="col-6">
                         <div class="d-flex flex-column mb-3 mt-1">
                             <label class="text-center" for="name">Nome da atividade</label>
-                            <input type="text" name="name" id="name">
+                            <input type="text" name="name" id="name" value="{{ old('name') }}">
                         </div>
                         <div class="d-flex flex-column mb-3">
                             <label class="text-center" for="dicipline">Diciplina da atividade</label>
@@ -86,29 +92,25 @@
                     <div class="col-6">
                         <div class="d-flex flex-column keditor">
                             <label class="text-center" for="editor"><b>Descrição da atividade</b></label>
-                            <textarea name="editor" id="editor"></textarea>
-                        </div>
-                        <div>
-                            @if (count($errors) > 0)
-                                <div class="row mt-5">
-                                    <div class="col d-flex justify-content-center flex-column">
-                                        <ul>
-
-                                            @foreach ($errors->all() as $error)
-                                                <li>{!! $error !!}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
+                            <textarea name="editor" id="editor">{{ old('editor') }}</textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2">
+                @if (count($errors) > 0)
+                    <div class="row mt-2">
+                        <ul class="d-flex justify-content-center aling-center flex-row gap-5 mt-3">
+                            @foreach ($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul </div>
+                @endif
+                <div class="row mt-1">
                     <button class="btn" style="background-color: #fb8351;" type="submit">Criar atividade</button>
                 </div>
-            </form>
         </div>
+    </div>
+    </form>
+    </div>
     </div>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -122,16 +124,5 @@
             .catch(error => {
                 console.error(error);
             });
-
-        CKEDITOR.instances.editor.on('key', function(evt) {
-            var text = evt.editor.getData();
-            var maxLength = 128; // Defina o número máximo de caracteres permitidos
-
-            if (text.length > maxLength) {
-                // Trunca o texto para o comprimento máximo
-                var truncatedText = text.substring(0, maxLength);
-                evt.editor.setData(truncatedText);
-            }
-        });
     </script>
 @endsection

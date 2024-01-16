@@ -23,14 +23,17 @@ class ActivityStoreFormRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'editor' => ['required']
+            'editor' => ['required', 'max:5000'],
+            'dicipline' => ['required']
         ];
     }
 
     public function messages() {
         return [
             'name.required' => 'O <b style="color:red;">NOME</b> é obrigatório!',
-            'editor.required' => 'A <b style="color:red;">DESCRIÇÃO</b> é obrigatória!'
+            'editor.required' => 'A <b style="color:red;">DESCRIÇÃO</b> é obrigatória!',
+            'editor.max' => 'O <b style="color:red;">MÁXIMO</b> é de 5000 caracteres!',
+            'dicipline' => 'Você precisa <b style="color:red;">SELECIONAR</b> uma diciplina '
         ];
     }
 }
