@@ -78,23 +78,20 @@
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
-                        @error('update')
-                            <span>{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
+                @if (session('errors'))
+                    @foreach ($errors->all() as $erro)
+                    <div class="row">
+                        <p class="text-center mt-1 errorMessage">{{ $erro }}</p>
+                    </div>
+                    @endforeach
+                @endif
                 <div class="row">
                     <div class="col d-flex justify-content-center">
                         <button class="btn btn-dark" type="submit">Tornar professor</button>
                     </div>
                 </div>
-                @if (session('fail'))
-                    <div class="row">
-                        <div class="col d-flex justify-content-center ">
-                            <p class="errorMessage">{{ session('fail') }}</p>
-                        </div>
-                    </div>
-                @endif
             </form>
         </div>
     </div>

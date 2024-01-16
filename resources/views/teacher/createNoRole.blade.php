@@ -97,13 +97,6 @@
                         <button class="btn btn-dark" type="submit">Registrar professor</button>
                     </div>
                 </div>
-                @if (session('fail'))
-                    <div class="row">
-                        <div class="col d-flex justify-content-center ">
-                            <p class="errorMessage">{{ session('fail') }}</p>
-                        </div>
-                    </div>
-                @endif
             </form>
         </div>
     </div>
