@@ -17,7 +17,13 @@
         <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
     @endif
     @if (session('errors'))
-        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
+        <div class="alert alert-danger">
+            <ul class="container d-flex justify-content-center align-items-center gap-5 mt-1">
+                @foreach ($errors->all() as $erro)
+                    <li>{{ $erro }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
     <div class="container mt-4">
         <div class="row">

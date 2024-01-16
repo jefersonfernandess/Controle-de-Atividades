@@ -88,15 +88,19 @@ class TeacherController extends Controller
     public function updateTeacher(UpdateTeacherFormRequest $request, $id)  //UPDATE data teacher 
     {
         $user = User::find($id);
-        if (!$user) {
-            return redirect()->route('teacher.index')->with('errors', 'Não foi possível atualizar.');
+        if ($user) {
+            $userRole = UserRole::where('user_id', $user->id)->first();
+            if($userRole->role_id == 1) {
+                return redirect()->route('teacher.index')->with('errors', 'Não foi possível atualizar.');
+            }
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            return redirect()->route('teacher.index')->with('success', 'Professor atualizado com sucesso!');
         };
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email
-        ]);
-        return redirect()->route('teacher.index')->with('success', 'Professor atualizado com sucesso!');
+        return redirect()->route('teacher.index')->with('errors', 'Esse professor não foi encontrado!');
+        
     }
 
     public function unlinkTeacher($id) //UNLINK teacher from role teacher

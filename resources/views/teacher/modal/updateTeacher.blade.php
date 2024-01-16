@@ -18,6 +18,7 @@
                         <div class="row mb-2">
                             <input type="text" name="email" id="email" value="{{ $user->email }}" placeholder="Email">
                         </div>
+                        <input type="text" name="userId" value="{{ $user->id }}" hidden>
                         <div class="row mb-2">
                             <button type="submit" class="btn btn-success">Atualizar</button>
                         </div>
