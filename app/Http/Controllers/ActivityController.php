@@ -20,6 +20,7 @@ class ActivityController extends Controller
         if (Auth::check()) {
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
+
             $activities = Activity::get();
             return view('activity.index', compact('activities', 'userAuth', 'roleUser'));
         }
@@ -30,12 +31,15 @@ class ActivityController extends Controller
 
     public function create() //returns view to create a new activity 
     {
+        $userAuth = Auth::user();
+        $roleUser = $userAuth->UserRole;
+
         $diciplines = Dicipline::get();
-        return view('activity.create', compact('diciplines'));
+        return view('activity.create', compact('diciplines', 'userAuth', 'roleUser'));
     }
 
     public function store(ActivityStoreFormRequest $request) //create a new activity
-    {  
+    {
         $user = Auth::user();
         if ($request->filesActivities) {
             $path = $request->file('filesActivities')->store('filesActivities');
@@ -65,13 +69,16 @@ class ActivityController extends Controller
 
     public function edit($id) //edit the activity
     {
+        $userAuth = Auth::user();
+        $roleUser = $userAuth->UserRole;
+
         $activity = Activity::find($id);
         $diciplines = Dicipline::get();
-        return view('activity.edit', compact('activity', 'diciplines'));
+        return view('activity.edit', compact('activity', 'diciplines', 'userAuth', 'roleUser'));
     }
 
-    public function update(Request $request, $id) //update the activity
-    {   
+    public function update(ActivityStoreFormRequest $request, $id) //update the activity
+    {
         dd($request->all());
         $activity = Activity::find($id);
 

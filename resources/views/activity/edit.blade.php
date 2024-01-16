@@ -47,8 +47,14 @@
     .form-content label {
         font-family: 'Montserrat', sans-serif;
     }
+    .ck-editor,
+    .editor,
+    .ck-content {
+        height: 9rem !important;
+    }
 </style>
 @section('content')
+    @include('layouts.navbar')
     <div class="container">
         <div class="content">
             <form class="form-content" action="{{ route('activity.update', $activity->id) }}" method="post"
@@ -56,17 +62,6 @@
                 @csrf
                 @method('put')
                 <div class="row">
-                    <div class="dropdown">
-                        <a class="btn dropdown-toggle" style="background-color: #fb8351;" href="#" role="button"
-                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menu
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('site.index') }}">Home</a></li>
-                            <li><a class="dropdown-item" href="{{ route('activity.index') }}">Atividades</a></li>
-                        </ul>
-                    </div>
                     <h2 class="text-center mb-4">Atualizar atividade</h2>
                 </div>
                 <div class="row">
@@ -101,7 +96,14 @@
                         </div>
                     </div>
                 </div>
-
+                @if (count($errors) > 0)
+                    <div class="row mt-2">
+                        <ul class="d-flex justify-content-center aling-center flex-row gap-5 mt-3">
+                            @foreach ($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul </div>
+                @endif
                 <div class="row mt-4">
                     <button class="btn" style="background-color: #fb8351;" type="submit">Atualizar atividade</button>
                 </div>

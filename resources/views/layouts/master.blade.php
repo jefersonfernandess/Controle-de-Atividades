@@ -25,6 +25,9 @@
             font-size: 1.2rem;
             background-color: #fb8351;
         }
+        .nav-item {
+            font-family: 'Montserrat', sans-serif;
+        }
 
         .colorTextWhite {
             color: white !important;

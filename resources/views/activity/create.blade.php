@@ -56,15 +56,12 @@
     }
 </style>
 @section('content')
+    @include('layouts.navbar')
     <div class="container">
         <div class="content">
             <form class="form-content" action="{{ route('activity.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="dropdown">
-                        <a class="btn" style="background-color: #fb8351;" href="{{ route('site.index') }}">Home
-                        </a>
-                    </div>
                     <h2 class="text-center mb-4">Criar atividade</h2>
                 </div>
                 <div class="row">
@@ -104,7 +101,7 @@
                             @endforeach
                         </ul </div>
                 @endif
-                <div class="row mt-1">
+                <div class="row mt-2">
                     <button class="btn" style="background-color: #fb8351;" type="submit">Criar atividade</button>
                 </div>
         </div>
