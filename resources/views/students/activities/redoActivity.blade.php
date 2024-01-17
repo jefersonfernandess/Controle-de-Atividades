@@ -40,9 +40,7 @@
         width: 30rem;
     }
 
-    .proposed-activity div {
-        
-    }
+    .proposed-activity div {}
 
     .activity-response {
         width: 30rem;
@@ -68,24 +66,37 @@
     .subtmit-button {
         width: 30rem;
     }
+
+    .ck-editor,
+    .editor,
+    .ck-content {
+        height: 9rem !important;
+    }
 </style>
 @section('content')
     @include('layouts.navbar')
     <div class="main-content">
-        <form class="content" action="{{ route('studentRedoActivity.update', $activityResponse->id) }}" method="POST" enctype="multipart/form-data">
+        <form class="content" action="{{ route('studentRedoActivity.update', $activityResponse->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="row mt-2">
                 <div class="col text-center">
-                    <h2>Refazer atividade</h2>
+                    <h2>Responder atividade</h2>
                 </div>
-            </div>  
+            </div>
+            <div class="row mt-2">
+                <div class="col d-flex flex-column text-center data-response">
+                    <input class="text-center" type="text" name="user" value="" hidden>
+                    <input class="text-center" type="text" name="activity_id" value="" hidden>
+                </div>
+            </div>
             <div class="row mt-4">
                 <div class="col d-flex justify-content-center text-center">
                     <div class="proposed-activity">
-                        <p><b>Sua resposta atual</b></p>
+                        <p><b>Atividade proposta</b></p>
                         <div>
-                            {!! $activityResponse->description !!}
+                            {!! $activity->description !!}
                         </div>
                     </div>
                 </div>
@@ -93,10 +104,20 @@
             <div class="row mt-4">
                 <div class="col">
                     <div class="d-flex justify-content-center aling-center">
-                        <div class="text-center activity-response keditor">
-                            <label class="text-center" for="response">Nova resposta</label>
-                            <textarea name="response" id="editor" rows="5" cols="33"></textarea>
-                        </div>
+                        @if ($activityResponse->filepath == true)
+                            <div class="text-center activity-response keditor">
+                                <label class="text-center" for="editor">Resposta anterior <a
+                                        href="{{ asset('storage/' . $activity->filepath) }}" download="{{ asset('storage/' . $activity->filepath) }}">(arquivo
+                                        enviado)</a></label>
+                                <textarea name="editor" id="editor" rows="5" cols="33">{{ $activityResponse->description }}</textarea>
+                            </div>
+                        @endif
+                        @if ($activityResponse->filepath == false)
+                            <div class="text-center activity-response keditor">
+                                <label class="text-center" for="editor">Resposta atual (Sem arquivos anexados)</label>
+                                <textarea name="editor" id="editor" rows="5" cols="33">{{ $activityResponse->description }}</textarea>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -104,13 +125,13 @@
                 <div class="col">
                     <div class="d-flex justify-content-center aling-center">
                         <div class="text-center files">
-                            <label class="text-center" for="file">Anexar arquivos da atividade</label>
-                            <input class="form-control form-control-sm" type="file" id="formFile" name="filesActivities">
+                            <label class="text-center" for="file">Anexar novo arquivo</label>
+                            <input class="form-control form-control-sm" type="file" id="formFile"
+                                name="filesActivities">
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row mt-4">
                 <div class="col text-center">
                     <div class="submit-button">

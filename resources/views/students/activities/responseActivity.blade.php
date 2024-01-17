@@ -66,6 +66,13 @@
     .subtmit-button {
         width: 30rem;
     }
+
+    .ck-editor,
+    .editor,
+    .ck-content {
+        height: 9rem !important;
+    }
+
 </style>
 @section('content')
     @include('layouts.navbar')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivityResponseFormRequest;
 use App\Http\Requests\ActivityResponseStudentFormRequest;
+use App\Http\Requests\StudentRedActivityUpdateFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 use Illuminate\Http\Request;
@@ -66,7 +67,6 @@ class ActivityResponseController extends Controller
 
     public function studentActivitiesReponsesStore(ActivityResponseStudentFormRequest $request) //the student's answered activity store
     {
-
         if ($request->filesActivities) {
             $path = $request->file('filesActivities')->store('filesActivities');
             ActivityResponse::create([
@@ -94,32 +94,33 @@ class ActivityResponseController extends Controller
     {
         $activityResponse = ActivityResponse::find($id);
         if ($activityResponse->check == false) {
+            $activity = Activity::where('id', $activityResponse->activity_id)->first();
             $userAuth = Auth::user();
             $roleUser = $userAuth->UserRole;
-            return view('students.activities.redoActivity', compact('activityResponse', 'userAuth', 'roleUser'));
+            return view('students.activities.redoActivity', compact('activityResponse', 'userAuth', 'roleUser', 'activity'));
         }
 
         return back()->with('fails', 'Você não pode refazer essa atividade!');
     }
 
-    public function studentRedoAcitivityUpdate(Request $request, $id) //store to redo the activity
-    {
+    public function studentRedoAcitivityUpdate(StudentRedActivityUpdateFormRequest $request, $id) //store to redo the activity
+    {   
         $activityResponse = ActivityResponse::find($id);
-        if (isset($activityResponse)) {
+        if ($activityResponse) {
             if ($request->filesActivities) {
                 $path = $request->file('filesActivities')->store('filesActivities');
                 $activityResponse->update([
                     'check' => false,
                     'note' => null,
                     'filepath' => $path,
-                    'description' => $request->response
+                    'description' => $request->editor
                 ]);
                 return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
             }
             $activityResponse->update([
                 'check' => false,
                 'note' => null,
-                'description' => $request->response
+                'description' => $request->editor
             ]);
             return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
         }
