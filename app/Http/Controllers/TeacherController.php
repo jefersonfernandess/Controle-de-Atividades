@@ -7,7 +7,6 @@ use App\Http\Requests\RegisterTeacherFormRequest;
 use App\Http\Requests\UpdateTeacherFormRequest;
 use App\Models\User;
 use App\Models\UserRole;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -80,9 +79,9 @@ class TeacherController extends Controller
                 ]);
                 return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
             }
-            return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
+            return redirect()->route('teacher.index')->with('success', 'Conta criada com sucesso!');
         }
-        return redirect()->route('teacher.index')->with('fails', 'Professor não foi encontrado!');
+        return redirect()->route('teacher.index')->with('fails', 'Não foi possível criar essa conta!');
     }
 
     public function updateTeacher(UpdateTeacherFormRequest $request, $id)  //UPDATE data teacher 
@@ -115,7 +114,7 @@ class TeacherController extends Controller
             $teacherRole->update(['role_id' => 1]);
             return redirect()->route('teacher.index')->with('success', 'Conta desvinculada com sucesso!');
         }
-        return redirect()->route('teacher.index')->with('fails', 'Não foi possível desvincular esse professor(a)!');
+        return redirect()->route('teacher.index')->with('fails', 'Essa conta já está desvinculada!');
     }
 
     public function destroyTeacher($id) //DELETE teacher from role teacher

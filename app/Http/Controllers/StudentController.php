@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterStudentFormRequest;
 use App\Http\Requests\UpdateStudentFormRequest;
-use App\Models\Activity;
-use App\Models\ActivityResponse;
 use App\Models\User;
 use App\Models\UserRole;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -74,18 +71,19 @@ class StudentController extends Controller
 
     public function updateStudent(UpdateStudentFormRequest $request, $id)
     {
-        if ($request) {
-            $user = User::find($id);
-            if ($user) {
-                $user->update([
-                    'name' => $request->name,
-                    'email' => $request->email
-                ]);
-                return redirect()->route('student.index')->with('success', 'Aluno atualizado com sucesso!');
+        $user = User::find($id);
+        if ($user) {
+            $userRole = UserRole::where('user_id', $user->id)->first();
+            if ($userRole->role_id == 1) {
+                return redirect()->route('student.index')->with('fails', 'Aluno não foi encontrado!');
             }
-            return redirect()->route('student.index')->with('fails', 'Aluno não foi encontrado!');
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            return redirect()->route('student.index')->with('success', 'Aluno atualizado com sucesso!');
         };
-        return redirect()->route('student.index')->with('fails', 'Não foi possível atualizar.');
+        return redirect()->route('student.index')->with('fails', 'Esse aluno não foi encontrado!');
     }
 
     public function unlinkStudent($id) //UNLINK student from role teacher
@@ -94,7 +92,7 @@ class StudentController extends Controller
         if ($user) {
             $userRole = UserRole::where('user_id', $user->id)->first();
             if ($userRole->role_id == 1) {
-                return redirect()->route('student.index')->with('fails', 'Não foi possível desvincular essa conta!');
+                return redirect()->route('student.index')->with('fails', 'Essa conta já está desvinculada!');
             }
             $studentRole = UserRole::where('user_id', $user->id)->first();
             $studentRole->update(['role_id' => 1]);
