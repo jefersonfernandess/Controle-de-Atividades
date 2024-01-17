@@ -2,10 +2,6 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
         <!-- Toggle button -->
-        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center aling-center">
@@ -47,7 +43,7 @@
                                         </p>
                                         <div class="collapse" id="collapseExample">
                                             <div class="card card-body">
-                                                
+
                                             </div>
                                         </div>
                                         <li class="nav-item">

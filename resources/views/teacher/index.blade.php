@@ -13,18 +13,6 @@
 </style>
 @section('content')
     @include('layouts.navbar')
-    @if (session('success'))
-        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
-    @endif
-    @if (session('errors'))
-        <div class="alert alert-danger">
-            <ul class="container d-flex justify-content-center align-items-center gap-5 mt-1">
-                @foreach ($errors->all() as $erro)
-                    <li>{{ $erro }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="container mt-4">
         <div class="row">
             <table class="table table-striped">
@@ -63,5 +51,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>  
 @endsection

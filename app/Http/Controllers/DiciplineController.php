@@ -32,7 +32,7 @@ class DiciplineController extends Controller
         ]);
 
         if(!$validate) {
-            return redirect()->back()->with('errors', 'Não foi possível criar a disciplina!');
+            return redirect()->back()->with('fails', 'Não foi possível criar a disciplina!');
         }
 
         Dicipline::create([
@@ -50,7 +50,7 @@ class DiciplineController extends Controller
         ]);
 
         if(!$validate) {
-            return redirect()->back()->with('errors', 'Não foi possível atualizar a disciplina!');
+            return redirect()->back()->with('fails', 'Não foi possível atualizar a disciplina!');
         }
 
         $dicipline = Dicipline::find($id);
@@ -62,7 +62,7 @@ class DiciplineController extends Controller
         $dicipline = Dicipline::find($id);
 
         if(!$dicipline) {
-            return back()->with('error', 'Não foi possível excluir a disciplína!');
+            return back()->with('fails', 'Não foi possível excluir a disciplína!');
         }
 
         $dicipline->delete();

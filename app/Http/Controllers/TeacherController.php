@@ -61,7 +61,7 @@ class TeacherController extends Controller
 
             return redirect()->route('teacher.index')->with('success', 'Professor cadastrado com sucesso!');
         }
-        return redirect()->back()->with('errors', 'Opção inválida! Selecione a opção correta.');
+        return redirect()->back()->with('fails', 'Opção inválida! Selecione a opção correta.');
     }
 
     public function storeTeacher(RegisterTeacherFormRequest $request) //CREATE new teacher account
@@ -82,7 +82,7 @@ class TeacherController extends Controller
             }
             return redirect()->route('teacher.index')->with('success', 'Professor criado com sucesso!');
         }
-        return redirect()->route('teacher.index')->with('errors', 'Professor não foi encontrado!');
+        return redirect()->route('teacher.index')->with('fails', 'Professor não foi encontrado!');
     }
 
     public function updateTeacher(UpdateTeacherFormRequest $request, $id)  //UPDATE data teacher 
@@ -91,7 +91,7 @@ class TeacherController extends Controller
         if ($user) {
             $userRole = UserRole::where('user_id', $user->id)->first();
             if($userRole->role_id == 1) {
-                return redirect()->route('teacher.index')->with('errors', 'Não foi possível atualizar.');
+                return redirect()->route('teacher.index')->with('fails', 'Não foi possível atualizar.');
             }
             $user->update([
                 'name' => $request->name,
@@ -99,7 +99,7 @@ class TeacherController extends Controller
             ]);
             return redirect()->route('teacher.index')->with('success', 'Professor atualizado com sucesso!');
         };
-        return redirect()->route('teacher.index')->with('errors', 'Esse professor não foi encontrado!');
+        return redirect()->route('teacher.index')->with('fails', 'Esse professor não foi encontrado!');
         
     }
 
@@ -109,13 +109,13 @@ class TeacherController extends Controller
         if ($user) {
             $userRole = UserRole::where('user_id', $user->id)->first();
             if ($userRole->role_id == 1) {
-                return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular essa conta!');
+                return redirect()->route('teacher.index')->with('fails', 'Não foi possível desvincular essa conta!');
             }
             $teacherRole = UserRole::where('user_id', $user->id)->first();
             $teacherRole->update(['role_id' => 1]);
             return redirect()->route('teacher.index')->with('success', 'Conta desvinculada com sucesso!');
         }
-        return redirect()->route('teacher.index')->with('errors', 'Não foi possível desvincular esse professor(a)!');
+        return redirect()->route('teacher.index')->with('fails', 'Não foi possível desvincular esse professor(a)!');
     }
 
     public function destroyTeacher($id) //DELETE teacher from role teacher
@@ -124,11 +124,11 @@ class TeacherController extends Controller
         if ($user) {
             $userRole = UserRole::where('user_id', $user->id)->first();
             if ($userRole->role_id == 1) {
-                return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
+                return redirect()->route('teacher.index')->with('fails', 'Não foi possível apagar esse professor(a)!');
             }
             $user->delete();
             return redirect()->route('teacher.index')->with('success', 'Professor excluido com sucesso!');
         }
-        return redirect()->route('teacher.index')->with('errors', 'Não foi possível apagar esse professor(a)!');
+        return redirect()->route('teacher.index')->with('fails', 'Não foi possível apagar esse professor(a)!');
     }
 }

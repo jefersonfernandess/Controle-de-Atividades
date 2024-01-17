@@ -82,7 +82,7 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
 
         if (!$activity) {
-            return redirect()->back()->with('errors', 'Atividade não encontrada!');
+            return redirect()->back()->with('fails', 'Atividade não encontrada!');
         }
 
         $user = Auth::user();
@@ -118,7 +118,7 @@ class ActivityController extends Controller
             $activity->delete();
             return redirect()->back()->with('success', 'Atividade excluida com sucesso!');
         }
-        return redirect()->back()->with('errors', 'Não foi possível excluir, atividade não encontrada!');
+        return redirect()->back()->with('fails', 'Não foi possível excluir, atividade não encontrada!');
     }
 
     public function indexTeacherActivities() //returns view for teachers to see their activities
@@ -129,7 +129,7 @@ class ActivityController extends Controller
             $teacherActivities = Activity::where('user_id', $userAuth->id)->get();
             return view('activity.teacherActivities.index', compact('teacherActivities', 'userAuth', 'roleUser'));
         }
-        return back()->with('erros', 'Não foi possível acessar as suas atividades!');
+        return back()->with('fails', 'Não foi possível acessar as suas atividades!');
     }
 
     public function indexStudentActivities() //returns view for students to see their activities
@@ -149,6 +149,6 @@ class ActivityController extends Controller
             return view('students.activities.index', compact('activityResponseTrue', 'activityResponseFalse', 'userAuth', 'roleUser'));
         }
         dd('deu erro');
-        return back()->with('erros', 'Não foi possível acessar as suas atividades!');
+        return back()->with('fails', 'Não foi possível acessar as suas atividades!');
     }
 }

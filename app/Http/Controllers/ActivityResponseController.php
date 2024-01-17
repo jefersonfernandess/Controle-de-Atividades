@@ -41,7 +41,7 @@ class ActivityResponseController extends Controller
             $roleUser = $userAuth->UserRole;
             return view('students.activities.responseActivity', compact('activity', 'user', 'userAuth', 'roleUser'));
         }
-        return back()->with('erros', 'Não foi possível encontrara atividade');
+        return back()->with('fails', 'Não foi possível encontrara atividade');
     }
 
     
@@ -99,7 +99,7 @@ class ActivityResponseController extends Controller
             return view('students.activities.redoActivity', compact('activityResponse', 'userAuth', 'roleUser'));
         }
 
-        return back()->with('erros', 'Você não pode refazer essa atividade!');
+        return back()->with('fails', 'Você não pode refazer essa atividade!');
     }
 
     public function studentRedoAcitivityUpdate(Request $request, $id) //store to redo the activity
@@ -123,6 +123,6 @@ class ActivityResponseController extends Controller
             ]);
             return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
         }
-        return back()->with('erros', 'Não foi possível refazer essa ativade, tenten novamente!');
+        return back()->with('fails', 'Não foi possível refazer essa ativade, tenten novamente!');
     }
 }

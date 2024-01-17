@@ -69,7 +69,7 @@ class StudentController extends Controller
             $teacherRole->update(['role_id' => 2]);
             return redirect()->route('student.index')->with('success', 'Aluno vinculado com sucesso!');
         }
-        return redirect()->route('student.index')->with('errors', 'Opção inválida! Selecione a opção correta.');
+        return redirect()->route('student.index')->with('fails', 'Opção inválida! Selecione a opção correta.');
     }
 
     public function updateStudent(UpdateStudentFormRequest $request, $id)
@@ -83,9 +83,9 @@ class StudentController extends Controller
                 ]);
                 return redirect()->route('student.index')->with('success', 'Aluno atualizado com sucesso!');
             }
-            return redirect()->route('student.index')->with('errors', 'Aluno não foi encontrado!');
+            return redirect()->route('student.index')->with('fails', 'Aluno não foi encontrado!');
         };
-        return redirect()->route('student.index')->with('errors', 'Não foi possível atualizar.');
+        return redirect()->route('student.index')->with('fails', 'Não foi possível atualizar.');
     }
 
     public function unlinkStudent($id) //UNLINK student from role teacher
@@ -94,12 +94,12 @@ class StudentController extends Controller
         if ($user) {
             $userRole = UserRole::where('user_id', $user->id)->first();
             if ($userRole->role_id == 1) {
-                return redirect()->route('student.index')->with('errors', 'Não foi possível desvincular essa conta!');
+                return redirect()->route('student.index')->with('fails', 'Não foi possível desvincular essa conta!');
             }
             $studentRole = UserRole::where('user_id', $user->id)->first();
             $studentRole->update(['role_id' => 1]);
             return redirect()->route('student.index')->with('success', 'Aluno desvinculado com sucesso!');
         }
-        return redirect()->route('student.index')->with('errors', 'Não foi possível desvincular essa conta!');
+        return redirect()->route('student.index')->with('fails', 'Não foi possível desvincular essa conta!');
     }
 }
