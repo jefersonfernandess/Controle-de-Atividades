@@ -115,15 +115,15 @@ class ActivityResponseController extends Controller
                     'filepath' => $path,
                     'description' => $request->editor
                 ]);
-                return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
+                return redirect()->route('site.index')->with('success', 'Sua resposta foi atualizada com sucesso!');
             }
             $activityResponse->update([
                 'check' => false,
                 'note' => null,
                 'description' => $request->editor
             ]);
-            return redirect()->route('site.index')->with('success', 'Atividade respondida com sucesso!');
+            return redirect()->route('site.index')->with('success', 'Sua resposta foi atualizada com sucesso!');
         }
-        return back()->with('fails', 'Não foi possível refazer essa ativade, tenten novamente!');
-    }
+        return back()->with('fails', 'Não foi possível refazer essa ativade, tente novamente!');
+    }                                                                            
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterStudentFormRequest;
+use App\Http\Requests\UpdateRoleStudentAccountFormRequest;
 use App\Http\Requests\UpdateStudentFormRequest;
 use App\Models\User;
 use App\Models\UserRole;
@@ -58,7 +59,7 @@ class StudentController extends Controller
         }
     }
 
-    public function updateRole(RegisterStudentFormRequest $request) //Upadate in ROLE TO STUDENT
+    public function updateRole(UpdateRoleStudentAccountFormRequest $request) //Upadate in ROLE TO STUDENT
     {
         if ($request) {
             $userId = $request->userId;

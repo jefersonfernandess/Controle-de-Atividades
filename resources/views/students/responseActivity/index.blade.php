@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titulo', 'Responder aividade')
+@section('titulo', 'Responder atividade')
 <style>
     .border-none {
         border: none !important;
