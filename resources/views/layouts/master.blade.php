@@ -59,9 +59,9 @@
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <script>
-                iziToast.show({
-                    title: '',
-                    position: 'topRight',
+                iziToast.warning({
+                    title: 'Atenção!',
+                    position: 'bottomRight',
                     message: '{{ $error }}'
                 });
             </script>
@@ -81,7 +81,7 @@
     @if (session()->get('fails'))
         <script>
             iziToast.error({
-                title: 'Atenção!',
+                title: 'Falha!',
                 position: 'bottomLeft',
                 message: '{{ session()->get('fails') }}'
             });
