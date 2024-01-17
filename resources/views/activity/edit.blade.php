@@ -96,14 +96,6 @@
                         </div>
                     </div>
                 </div>
-                @if (count($errors) > 0)
-                    <div class="row mt-2">
-                        <ul class="d-flex justify-content-center aling-center flex-row gap-5 mt-3">
-                            @foreach ($errors->all() as $error)
-                                <li>{!! $error !!}</li>
-                            @endforeach
-                        </ul </div>
-                @endif
                 <div class="row mt-4">
                     <button class="btn" style="background-color: #fb8351;" type="submit">Atualizar atividade</button>
                 </div>

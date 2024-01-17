@@ -89,12 +89,6 @@
 </style>
 @section('content')
     @include('layouts.navbar')
-    @if (session('success'))
-        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
-    @endif
-    @if (session('errors'))
-        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
-    @endif
     <main class="main mt-2">
         <div class="container">
             <table class="table">

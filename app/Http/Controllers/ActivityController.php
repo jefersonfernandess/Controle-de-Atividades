@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AcitivityUpdateRequest;
 use App\Http\Requests\ActivityStoreFormRequest;
 use App\Models\Activity;
 use App\Models\ActivityResponse;
 use App\Models\Dicipline;
 use App\Models\UserRole;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
