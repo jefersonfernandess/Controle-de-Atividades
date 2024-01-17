@@ -22,7 +22,7 @@ class LoginFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'max:128'],
             'password' => ['required', 'min:3']
         ];
     }
@@ -31,6 +31,7 @@ class LoginFormRequest extends FormRequest
         return [
             'email.required' => 'O email é obrigatório!',
             'email.email' => 'O email precisa ser um email válido!',
+            'email.max' => 'O email só pode ter até 128 caracteres!',
             'password.required' => 'A senha é obrigatório!',
             'password.min' => 'A senha precisa ter no mínimo 3 caracteres',
         ];

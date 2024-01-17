@@ -14,12 +14,6 @@
 @section('content')
     @include('layouts.navbar')
     <div class="container mt-4">
-        @if (session('success'))
-            <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
-        @endif
-        @if (session('errors'))
-            <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
-        @endif
         <table class="table table-bordered">
             <thead class="table-dark">
                 <tr>

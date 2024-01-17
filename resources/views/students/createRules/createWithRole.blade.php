@@ -91,13 +91,6 @@
                     </div>
                 </div>
             </div>
-            @if (session('fail'))
-                <div class="row">
-                    <div class="col d-flex justify-content-center ">
-                        <p class="errorMessage">{{ session('fail') }}</p>
-                    </div>
-                </div>
-            @endif
         </form>
     </div>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

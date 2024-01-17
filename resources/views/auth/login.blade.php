@@ -75,13 +75,6 @@
                     <button class="btn btn-dark" type="submit">Login</button>
                 </div>
             </div>
-            @if (session('fail'))
-                <div class="row">
-                    <div class="col d-flex justify-content-center ">
-                        <p class="errorMessage">{{ session('fail') }}</p>
-                    </div>
-                </div>
-            @endif
             <div class="row">
                 <div class="col d-flex justify-content-center">
                     <p>Não tem uma conta? clique <a href="{{ route('authregister.index') }}">aqui</a> para se registrar</p>

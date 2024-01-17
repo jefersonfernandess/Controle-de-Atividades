@@ -78,12 +78,6 @@
 </style>
 @section('content')
     @include('layouts.navbar')
-    @if (session('success'))
-        <p class="alert alert-success text-center mt-2">{{ session('success') }}</p>
-    @endif
-    @if (session('errors'))
-        <p class="alert alert-danger text-center mt-2">{{ session('errors') }}</p>
-    @endif
     <div class="container">
         <div class="row mt-2">
             @foreach ($diciplines as $dicipline)

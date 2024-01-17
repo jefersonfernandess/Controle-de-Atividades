@@ -102,13 +102,6 @@
                     </div>
                 </div>
             </div>
-            @if (session('fail'))
-                <div class="row">
-                    <div class="col d-flex justify-content-center ">
-                        <p class="errorMessage">{{ session('fail') }}</p>
-                    </div>
-                </div>
-            @endif
         </form>
     </div>
     <script>

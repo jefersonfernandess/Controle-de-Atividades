@@ -28,7 +28,7 @@ class UpdateRoleStudentAccountFormRequest extends FormRequest
 
     public function messages() {
         return [
-            'userId.required' => 'Você precisa selecionar uma conta!',
+            'userId.required' => 'Você precisa selecionar uma usuário!',
         ];
     }
 }
