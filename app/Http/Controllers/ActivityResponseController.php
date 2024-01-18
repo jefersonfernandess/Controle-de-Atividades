@@ -49,7 +49,10 @@ class ActivityResponseController extends Controller
 
 
     public function storeActivityResponse(ActivityResponseFormRequest $request, $id) //for the teacher to correct the activity 
-    {
+    {   
+        if($request->note > 10 || $request->note < 0) {
+            return redirect()->back()->with('fails', 'A nota precisa ser maior ou igual a 0 e menor ou igual a 10');
+        }
         //dd($request->all());
         $activityResponseStudent = ActivityResponse::find($id);
         if ($request->check == null) {

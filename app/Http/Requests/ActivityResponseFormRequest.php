@@ -22,13 +22,15 @@ class ActivityResponseFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'note' => ['required'],
+            'note' => ['required', 'max:10', 'min:0'],
         ];
     }
 
     public function messages() {
         return [
-            'note.required' => 'Você precisa dar uma nota!'
+            'note.required' => 'Você precisa dar uma nota!',
+            'note.max' => 'teste max',
+            'note.min' => 'teste min'
         ];
     }
 }
