@@ -39,6 +39,10 @@
         .card>a:hover {
             border-bottom: 1px solid #000000;
         }
+
+        .card-body>button:hover {
+            border-bottom: 1px solid #000000 !important;
+        }
     </style>
 </head>
 

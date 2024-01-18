@@ -70,11 +70,12 @@
                                     @elseif ($roleUser->role_id == 3)
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse"
-                                                href="#dashboardTeacher" role="button" aria-expanded="false"
+                                                href="#dashboard" role="button" aria-expanded="false"
                                                 aria-controls="collapseExample">
                                                 <i class="fa-solid fa-house" style="color: #000000;"></i> Portal <i
                                                     class="fa-solid fa-chevron-down fa-xs" style="color: #000000;"></i>
                                             </a>
+                                            @include('layouts.collapseSideBar.dashboard')
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="collapse"

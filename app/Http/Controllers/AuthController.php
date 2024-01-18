@@ -21,12 +21,14 @@ class AuthController extends Controller
     public function loginStore(LoginFormRequest $request)
     {
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->route('site.index');
+        if($request) {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $request->session()->regenerate();
+                return redirect()->route('site.index');
+            }
+            return redirect()->route('authlogin.index')->with('fail', 'Email e/ou senha inválidos!');
         }
-
-        return back()->with('fail', 'Invalid email and/or password');
+        return redirect()->route('authlogin.index')->with('fail', 'Email e/ou senha inválidos!');
     }
 
     public function logout(Request $request)

@@ -10,17 +10,17 @@
                 <div class="container content">
                     <form id="form" class="form-register" action="{{ route('diciplines.store') }}" method="post">
                         @csrf
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col d-flex justify-content-center">
                                 <h2>Nova diciplina</h2>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col d-flex flex-column justify-content-center">
                                 <input type="text" name="name" id="name" placeholder="Nome da diciplina" value="{{ old('name') }}">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col d-flex flex-column justify-content-center">
                                 <button class="btn btn-success" type="submit">Criar diciplina</button>
                             </div>
