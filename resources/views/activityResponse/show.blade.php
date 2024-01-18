@@ -2,9 +2,9 @@
 
 @section('titulo', 'Respostas atividades - Todos')
 <style>
-    .border-none {
-        border: none !important;
-        background: none;
+    body {
+        //background-image: linear-gradient(to bottom, #f0a818, #f3ba39, #f6cb54, #fadb6f, #ffeb89);
+        background-image: linear-gradient(to top, #fb8351, #fc8b53, #fd9356, #fd9b5a, #fea35e, #fdac69, #fbb474, #fabc80, #f6c696, #f2d0ac, #eed9c3, #e9e2da);
     }
 
     .main-content {
@@ -117,11 +117,14 @@
             </div>
             <div class="row mt-3">
                 <div class="response-teacher">
-                    <div class="text-center donwload">
-                        <label for="download">Arquivos enviado pelo aluno: <b>1</b></label>
-                        <button class="donwload-button link-dark" name="download" type="submit"><i class="fa fa-download"
-                                aria-hidden="true"></i> Download</button>
-                    </div>
+                    @if ($activityResponse->filepath == true)
+                        <div class="text-center donwload">
+                            <label for="download">Arquivos enviado pelo aluno: <b>1</b></label>
+                            <a href="{{ asset('storage/' . $activityResponse->filepath) }}"
+                                download="{{ asset('storage/' . $activityResponse->filepath) }}" class="donwload-button link-dark" name="download" ><br><i
+                                class="fa fa-download" aria-hidden="true"></i> Download</a>
+                        </div>
+                    @endif
                     <div class="text-center d-flex flex-column">
                         <label for="note">Nota</label>
                         <input class="text-center note" type="number" name="note" id="noteInput" step="0.1"
@@ -142,7 +145,4 @@
         </form>
     </div>
     </div>
-    <script>
-        
-    </script>
 @endsection
