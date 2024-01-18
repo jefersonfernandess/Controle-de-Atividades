@@ -42,7 +42,7 @@
         width: 30rem;
         margin: auto;
         border: none;
-        border-radius: 0.3rem; 
+        border-radius: 0.3rem;
     }
 
     .data-response input {
@@ -64,11 +64,12 @@
     }
 
     .note {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width: 3rem;
         height: 2rem;
         border: none;
     }
+
     .check-input {
         font-size: 0.5rem;
         width: 2rem;
@@ -90,28 +91,7 @@
     }
 </style>
 @section('content')
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('site.index') }}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Respostas</a>
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navbar')
     <div class="main-content">
         <form class="content" action="{{ route('responseacty.store', $activityResponse->id) }}" method="POST">
             @csrf
@@ -139,11 +119,13 @@
                 <div class="response-teacher">
                     <div class="text-center donwload">
                         <label for="download">Arquivos enviado pelo aluno: <b>1</b></label>
-                        <button class="donwload-button link-dark" name="download" type="submit"><i class="fa fa-download" aria-hidden="true"></i>   Download</button>
+                        <button class="donwload-button link-dark" name="download" type="submit"><i class="fa fa-download"
+                                aria-hidden="true"></i> Download</button>
                     </div>
                     <div class="text-center d-flex flex-column">
                         <label for="note">Nota</label>
-                        <input class="text-center note" type="text" name="note">
+                        <input class="text-center note" type="number" name="note" id="noteInput" step="0.1"
+                            min="0" max="10">
                     </div>
                     <div class="text-center d-flex flex-column me-5">
                         <label for="check">Visto</label>
@@ -160,4 +142,7 @@
         </form>
     </div>
     </div>
+    <script>
+        
+    </script>
 @endsection

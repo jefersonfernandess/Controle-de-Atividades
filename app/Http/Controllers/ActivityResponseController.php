@@ -29,8 +29,10 @@ class ActivityResponseController extends Controller
 
     public function showActivityResponse($id) //return only one activity response
     {
+        $userAuth = Auth::user();
+        $roleUser = $userAuth->UserRole;
         $activityResponse = ActivityResponse::find($id);
-        return view('activityResponse.show', compact('activityResponse'));
+        return view('activityResponse.show', compact('activityResponse', 'userAuth', 'roleUser'));
     }
 
     public function studentActivitiesResponses($id) //returns the student's answered activity view
@@ -45,9 +47,10 @@ class ActivityResponseController extends Controller
         return back()->with('fails', 'Não foi possível encontrara atividade');
     }
 
-    
+
     public function storeActivityResponse(ActivityResponseFormRequest $request, $id) //for the teacher to correct the activity 
     {
+        //dd($request->all());
         $activityResponseStudent = ActivityResponse::find($id);
         if ($request->check == null) {
             $activityResponseStudent->update([
@@ -104,7 +107,7 @@ class ActivityResponseController extends Controller
     }
 
     public function studentRedoAcitivityUpdate(StudentRedActivityUpdateFormRequest $request, $id) //store to redo the activity
-    {   
+    {
         $activityResponse = ActivityResponse::find($id);
         if ($activityResponse) {
             if ($request->filesActivities) {
@@ -125,5 +128,5 @@ class ActivityResponseController extends Controller
             return redirect()->route('site.index')->with('success', 'Sua resposta foi atualizada com sucesso!');
         }
         return back()->with('fails', 'Não foi possível refazer essa ativade, tente novamente!');
-    }                                                                            
+    }
 }

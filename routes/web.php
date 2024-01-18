@@ -74,7 +74,7 @@ Route::controller(SiteController::class)->group(function () {
             Route::get('/respostas-atividade/{atividade}', 'indexActivityResponses')->name('responseacty.index');
             Route::get('/resposta-atividade/{atividade}', 'showActivityResponse')->name('responseacty.show');
             Route::post('/resposta-atividade/corrigir/{atividade}/', 'storeActivityResponse')->name('responseacty.store');
-        });
+        }); 
 
         Route::controller(ActivityController::class)->group(function () {
             Route::get('/atividades/', 'index')->name('activity.index');

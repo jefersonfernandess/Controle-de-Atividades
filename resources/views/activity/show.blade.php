@@ -117,13 +117,14 @@
                         @else
                             <div class="opcoes d-flex justify-content-left aling-center gap-1">
                                 <div class="dropdown">
-                                    <button class="btn btn-info dropdown-toggle" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         Arquivos extras
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li>
-                                            <a class="dropdown-item" href="{{ asset('storage/' . $activity->filepath) }}" download="{{ asset('storage/' . $activity->filepath) }}">Arquivo extra</a>
+                                            <a class="dropdown-item" href="{{ asset('storage/' . $activity->filepath) }}"
+                                                download="{{ asset('storage/' . $activity->filepath) }}">Arquivo extra</a>
                                         </li>
                                     </ul>
                                 </div>
