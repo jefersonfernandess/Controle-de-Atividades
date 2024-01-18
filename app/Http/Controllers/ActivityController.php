@@ -139,14 +139,11 @@ class ActivityController extends Controller
             $activityResponseTrue = Activity::with(['ActivityResponse' => function ($query) use ($userAuth) {
                 $query->where('user_id', $userAuth->id);
             }])->whereRelation('ActivityResponse', 'user_id', $userAuth->id)->get();
-            //dd($activityResponseTrue);
 
             $activitiesResponseId = $activityResponseTrue->pluck('id');
             $activityResponseFalse = Activity::with('ActivityResponse')->whereNotIn('id', $activitiesResponseId)->get();
-
             return view('students.activities.index', compact('activityResponseTrue', 'activityResponseFalse', 'userAuth', 'roleUser'));
         }
-        dd('deu erro');
         return back()->with('fails', 'Não foi possível acessar as suas atividades!');
     }
 }

@@ -58,11 +58,11 @@
                 <div class="col-3">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $activityFalse->name }}</h5>
+                            <h5 class="card-title">Atividade: {{ $activityFalse->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text"></p>
                             <a href="{{ route('studentActivityResponse.index', $activityFalse->id) }}"
-                                class="card-link">Fazer atividade</a>
+                                class="link-dark">Fazer atividade <i class="fa-solid fa-up-right-from-square fa-xs" style="color: #000000;"></i></a>
                         </div>
                     </div>
                 </div>
